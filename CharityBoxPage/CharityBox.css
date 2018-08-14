@@ -34,12 +34,19 @@
     background-color: RoyalBlue;
 }
 
-.circle {
+.coin {
     display: inline-block;
     height: 3vw;
     width: 3vw;
     background-color: white;
     border-radius: 50%;
+}
+
+.bill {
+    display: inline-block;
+    height: 3vw;
+    width: 5vw;
+    background-color: #85bb65; /* Dollar green */
 }
 
 #spacer {
@@ -52,7 +59,7 @@ padding-bottom: 10%;
 }
 
 /* Drawing Charity Box */
-.square {
+.boxRectange {
     width: 50%;
     margin: 0 auto;
     background-color: #604020;
@@ -61,7 +68,7 @@ padding-bottom: 10%;
     justify-content: center;
   }
 
-.square:before{
+.boxRectange:before{
     content: "";
     display: block;
     padding-top: 150%;
