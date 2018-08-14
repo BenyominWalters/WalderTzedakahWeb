@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Coin and Bill</title>
+
+    <style>
+        html {
+	  box-sizing: border-box;
+	  font-size: 16px;
+	  width: 100%;
+	}
+	*, *:before, *:after {
+	  box-sizing: inherit;
+	}
+
+body {
+  padding: 2rem;
+  text-align: center;
+  background: grey;
+}
+
+.bill-outer {
+  margin: 0 auto;
+  height: 13rem;
+  width: 34rem;
+  border: 1rem solid #dedeb9;
+  background: #73886b;
+  position: relative;
+}
+
+  .bill-outer:after {
+    color: brown;
+    text-align: center;
+/*    line-height: 2rem;*/
+    font-size: 5rem;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 1;
+  }
+
+.total {
+  text-align: center;
+  line-height: 2rem;
+  font-size: 5rem;
+  color: #dedeb9;
+  position: relative;
+  z-index: 10;
+}
+    </style>
+</head>
+<body>
+    <div class="bill-outer">
+       <p class="total">$<span id="total">1</span></p>
+    </div>
+    <div class="bill-outer">
+        <p class="total">$<span id="total">10</span></p>
+    </div>
+</body>
+</html>
