@@ -9,7 +9,7 @@
 
   /* Center value buttons with flexbox */
 .valueButtonsWrapper {
-    padding-bottom: 1em;
+    padding-bottom: 2vw;
 }
 
   /* Center value buttons with flexbox */
@@ -18,35 +18,23 @@
     justify-content: space-between;
   }
 
-  /* Style buttons */
-.coinButton {
-    width: 20vw;
-    background-color: DodgerBlue; /* Blue background */
-    border: none; /* Remove borders */
-    color: white; /* White text */
-    padding: 2vw 3vw; /* Some padding */
-    font-size: 4vw; /* Set a font size */
-    cursor: pointer; /* Mouse pointer on hover */
-}
-
-/* Darker background on mouse-over */
-.coinButton:hover {
-    background-color: RoyalBlue;
-}
-
 .coin {
-    display: inline-block;
-    height: 3vw;
-    width: 3vw;
-    background-color: white;
+    height: 13vw;
+    width: 13vw;
     border-radius: 50%;
+    border: 1vw solid #A9A9A9;
+    background: #C0C0C0;
+    font-size: 5vw;
+    color: #A9A9A9;
 }
 
 .bill {
-    display: inline-block;
-    height: 3vw;
-    width: 5vw;
-    background-color: #85bb65; /* Dollar green */
+  height: 9.75vw;
+  width: 25.5vw;
+  border: .75vw solid #dedeb9;
+  background: #73886b;
+  font-size: 5vw;
+  color: #dedeb9;
 }
 
 #spacer {

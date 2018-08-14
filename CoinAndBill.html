@@ -6,60 +6,35 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Coin and Bill</title>
 
-    <style>
-        html {
-	  box-sizing: border-box;
-	  font-size: 16px;
-	  width: 100%;
-	}
-	*, *:before, *:after {
-	  box-sizing: inherit;
-	}
-
-body {
-  padding: 2rem;
-  text-align: center;
-  background: grey;
+  <style>
+.coin {
+  height: 13vw;
+  width: 13vw;
+  border-radius: 50%;
+  border: 1vw solid #A9A9A9;
+  background: #C0C0C0;
+  font-size: 5vw;
+  color: #A9A9A9;
 }
-
-.bill-outer {
-  margin: 0 auto;
-  height: 13rem;
-  width: 34rem;
-  border: 1rem solid #dedeb9;
+.bill {
+  height: 13vw;
+  width: 34vw;
+  border: 1vw solid #dedeb9;
   background: #73886b;
-  position: relative;
-}
-
-  .bill-outer:after {
-    color: brown;
-    text-align: center;
-/*    line-height: 2rem;*/
-    font-size: 5rem;
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    z-index: 1;
-  }
-
-.total {
-  text-align: center;
-  line-height: 2rem;
-  font-size: 5rem;
+  font-size: 5vw;
   color: #dedeb9;
-  position: relative;
-  z-index: 10;
 }
+
     </style>
 </head>
 <body>
-    <div class="bill-outer">
-       <p class="total">$<span id="total">1</span></p>
-    </div>
-    <div class="bill-outer">
-        <p class="total">$<span id="total">10</span></p>
-    </div>
+  <button class="coin">1¢</button>
+  <button class="coin">5¢</button>
+  <button class="coin">25¢</button>
+    
+  <button class="bill">$1</button>
+  <button class="bill">$5</button>
+  <button class="bill">$10</button>
+
 </body>
 </html>
