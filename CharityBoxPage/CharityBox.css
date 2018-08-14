@@ -4,6 +4,7 @@
 
 .title {
     text-align: center;
+    font-size: 10vw;
 }
 
   /* Center value buttons with flexbox */
@@ -19,18 +20,26 @@
 
   /* Style buttons */
 .coinButton {
-    width: 6em;
+    width: 20vw;
     background-color: DodgerBlue; /* Blue background */
     border: none; /* Remove borders */
     color: white; /* White text */
-    padding: 12px 16px; /* Some padding */
-    font-size: 16px; /* Set a font size */
+    padding: 2vw 3vw; /* Some padding */
+    font-size: 4vw; /* Set a font size */
     cursor: pointer; /* Mouse pointer on hover */
 }
 
 /* Darker background on mouse-over */
 .coinButton:hover {
     background-color: RoyalBlue;
+}
+
+.circle {
+    display: inline-block;
+    height: 3vw;
+    width: 3vw;
+    background-color: white;
+    border-radius: 50%;
 }
 
 #spacer {
@@ -112,7 +121,7 @@ padding-bottom: 10%;
     padding: 15px 20px;
     text-align: center;
     text-decoration: none;
-    font-size: 16px;
+    font-size: 5vw;
     width: 50%;
     margin: auto;
 }
