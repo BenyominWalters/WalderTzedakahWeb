@@ -27,7 +27,7 @@ function buildDonationLink() {
     let charityEmail = 'info@clhds.com';
     let charityName = 'Cheder Lubavitch';
     let donationInteger = parseInt(boxTotal); // Separates whole dollar value from boxTotal
-    let donationDecimal = parseInt(boxTotal % 1 * 100);
+    let donationDecimal = parseInt(boxTotal % 1 * 100, 10).toString().padStart(2,'0');
     let donationAmount = donationInteger +'%2e'+ donationDecimal;
     // Builds custom PayPal link. Its very long, so I broke it up onto multiple lines 
     donationLink = 
@@ -38,12 +38,15 @@ function buildDonationLink() {
         +'&no_note=0&cn=&amount='
         +donationAmount
         +'&curency_code=USD&bn=PP-DonationsBF:btn_donateCC_LG.gif:NonHosted';
+    console.log(boxTotal);
+    console.log(donationDecimal);
+    console.log(donationAmount);
 }
 
 function donateBoxTotal() {
     console.log("You Donated!");
     buildDonationLink();
-    console.log(donationLink);
-    //window.open(donationLink, 'Donate', width=100,height=100);
+    console.log(donationLink); // Turn on window to launch actual payment.
+    // window.open(donationLink, 'Donate', width=100,height=100);
     resetBox();
 }
