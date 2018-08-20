@@ -27,7 +27,7 @@ function buildDonationLink() {
     let charityEmail = 'info@clhds.com';
     let charityName = 'Cheder Lubavitch';
     let donationInteger = parseInt(Math.floor(boxTotal/100)); // Separates whole dollar value from boxTotal
-    let donationDecimal = boxTotal.toString().slice(-2);
+    let donationDecimal = boxTotal.toString().slice(-2); // Separates decimal values from boxTotal
     let donationAmount = donationInteger +'%2e'+ donationDecimal;
     // Builds custom PayPal link. Its very long, so I broke it up onto multiple lines 
     donationLink = 
