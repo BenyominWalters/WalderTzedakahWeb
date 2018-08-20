@@ -10,24 +10,24 @@ var donationLink = ""
 
 function addValue(value) {
     //giveAmount = giveAmount + value;
-    value = parseFloat(value, 10);
+    value = parseInt(value);
     console.log(value);
     boxTotal = boxTotal + value;
     // The toFixed() function prevents javaScript from adding tons of decimal places to float
     // This way it displays as a two decimal place currency.
-    document.getElementById("boxValue").innerHTML = "$" + boxTotal.toFixed(2); 
+    document.getElementById("boxValue").innerHTML = "$" + (boxTotal/100).toFixed(2); 
 }
 
 function resetBox(){
     boxTotal = 0;
-    document.getElementById("boxValue").innerHTML = "$" + boxTotal.toFixed(2);
+    document.getElementById("boxValue").innerHTML = "$" + (boxTotal/100).toFixed(2);
 }
 
 function buildDonationLink() {
     let charityEmail = 'info@clhds.com';
     let charityName = 'Cheder Lubavitch';
-    let donationInteger = parseInt(boxTotal); // Separates whole dollar value from boxTotal
-    let donationDecimal = parseInt(boxTotal % 1 * 100, 10).toString().padStart(2,'0');
+    let donationInteger = parseInt(Math.floor(boxTotal/100)); // Separates whole dollar value from boxTotal
+    let donationDecimal = boxTotal.toString().slice(-2);
     let donationAmount = donationInteger +'%2e'+ donationDecimal;
     // Builds custom PayPal link. Its very long, so I broke it up onto multiple lines 
     donationLink = 
