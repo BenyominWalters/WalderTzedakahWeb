@@ -36,10 +36,28 @@
   font-size: 5vw;
   color: #dedeb9;
 }
+/* Give Button */
+#giveButtonWrapper {
+    text-align: center;
+}
 
-#spacer {
-border-style: dashed;
-padding-bottom: 10%;
+#giveButton {
+    background-color: #ffc438; /* Gold */
+    color: black;
+    border: none;
+    border-top-left-radius: 100%;
+    border-top-right-radius: 100%;
+    padding: 15px 20px;
+    font-size: 5vw;
+    width: 30%;
+}
+
+.hidden {
+    visibility: hidden;
+}
+
+.visible {
+    visibility: visible;
 }
 
 #charityBoxWrapper {
@@ -116,9 +134,6 @@ padding-bottom: 10%;
     color: black;
     border: none;
     padding: 15px 20px;
-    text-align: center;
-    text-decoration: none;
     font-size: 5vw;
     width: 50%;
-    margin: auto;
 }
