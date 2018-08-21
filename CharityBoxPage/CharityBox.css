@@ -25,7 +25,7 @@
     border: 1vw solid #A9A9A9;
     background: #C0C0C0;
     font-size: 5vw;
-    color: #A9A9A9;
+    color: #707070;
 }
 
 .bill {
@@ -54,15 +54,14 @@
 }
 
 #giveButton {
-    background-color: #ffc438; /* Gold */
-    color: black;
-    border: none;
-    border-top-left-radius: 100%;
-    border-top-right-radius: 100%;
-    padding: 15px 20px;
-    font-size: 5vw;
-    width: 30%;
+    position: relative;
+    top: 2em;
     margin-top: 3px;
+    height: 26vw;
+    width: 26vw;
+    z-index: 1;
+    color: #555555;
+    padding-bottom: 1em;
 }
 
 .hidden {
@@ -75,6 +74,8 @@
 
 #charityBoxWrapper {
     text-align: center;
+    position: relative;
+    z-index: 2;
 }
 
 /* Drawing Charity Box */
