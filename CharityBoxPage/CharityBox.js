@@ -5,7 +5,7 @@
 */
 
 var boxTotal = 0;
-var giveAmount = 0; // Holds value of donation before adding to box to confirm.
+var giveAmount = 0.00; // Holds value of donation before adding to box to confirm.
 
 var donationLink = ""
 
@@ -13,7 +13,7 @@ function addValue(value) {
     value = parseInt(value); // Because value of button is string, converts to Int
     console.log(value);
     giveAmount = giveAmount + value;
-    document.getElementById("giveAmount").value = + (giveAmount/100).toFixed(2);
+    document.getElementById("giveAmount").value = (giveAmount/100).toFixed(2);
     // Uses toFixed() to trim extra float zeros to display as a two decimal place for currency.
     document.getElementById("giveButton").className = "giveButton visible" // Makes button visible when has value to give
 }
@@ -24,8 +24,8 @@ function giveToBox() {
     // Uses toFixed() to trim extra float zeros to display as a two decimal place for currency.
     
     // Resets giveAmount
-    giveAmount = 0;
-    document.getElementById("giveAmount").value = + giveAmount.toFixed(2); // To fixed formats as $0.00, instead of just $0
+    giveAmount = 0.00;
+    document.getElementById("giveAmount").value = giveAmount.toFixed(2); // To fixed formats as $0.00, instead of just $0
     document.getElementById("giveButton").className = "giveButton hidden" // Hides button when no value to give
 
 } 
