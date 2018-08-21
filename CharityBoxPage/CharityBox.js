@@ -9,6 +9,11 @@ var giveAmount = 0.00; // Holds value of donation before adding to box to confir
 
 var donationLink = ""
 
+function loadSavedTotal() {
+    boxTotal = parseInt(localStorage.boxTotal);
+    document.getElementById("boxValue").innerHTML = "$" + (boxTotal/100).toFixed(2);
+}
+
 function addValue(value) {
     value = parseInt(value); // Because value of button is string, converts to Int
     console.log(value);
@@ -20,8 +25,10 @@ function addValue(value) {
 
 function giveToBox() {
     boxTotal = boxTotal + giveAmount;
-    document.getElementById("boxValue").innerHTML = "$" + (boxTotal/100).toFixed(2);
-    // Uses toFixed() to trim extra float zeros to display as a two decimal place for currency.
+    document.getElementById("boxValue").innerHTML = "$" + (boxTotal/100).toFixed(2); // Uses toFixed() to trim extra float zeros to display as a two decimal place for currency.
+    
+    // Save total to localStorage
+    localStorage.boxTotal = boxTotal;
     
     // Resets giveAmount
     giveAmount = 0.00;
