@@ -1,0 +1,17 @@
+<svg width="580" height="400" xmlns="http://www.w3.org/2000/svg">
+ <!-- Created with Method Draw - http://github.com/duopixel/Method-Draw/ -->
+ <g>
+  <title>background</title>
+  <rect fill="none" id="canvas_background" height="402" width="582" y="-1" x="-1"/>
+  <g display="none" overflow="visible" y="0" x="0" height="100%" width="100%" id="canvasGrid">
+   <rect fill="url(#gridpattern)" stroke-width="0" y="0" x="0" height="100%" width="100%"/>
+  </g>
+ </g>
+ <g>
+  <title>Layer 1</title>
+  <rect id="svg_10" height="300" width="185" y="50" x="197.5" stroke-width="10" stroke="#624a2e" fill="#624a2e"/>
+  <rect id="svg_11" height="26" width="260" y="17" x="160" stroke-width="5" stroke="#000000" fill="#000000"/>
+  <rect id="svg_12" height="26" width="260" y="357" x="160" stroke-width="5" stroke="#000000" fill="#000000"/>
+  <text transform="matrix(1,0,0,1,0,0) " font-weight="bold" xml:space="preserve" text-anchor="start" font-family="'Palatino Linotype', 'Book Antiqua', Palatino, serif" font-size="75" id="svg_13" y="228.5" x="215.976563" stroke-width="0" stroke="#000000" fill="#cccccc">צדקה</text>
+ </g>
+</svg>

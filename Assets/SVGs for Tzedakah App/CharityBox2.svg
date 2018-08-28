@@ -1,0 +1,18 @@
+<svg width="580" height="400" xmlns="http://www.w3.org/2000/svg">
+ <!-- Created with Method Draw - http://github.com/duopixel/Method-Draw/ -->
+ <g>
+  <title>background</title>
+  <rect fill="none" id="canvas_background" height="402" width="582" y="-1" x="-1"/>
+  <g display="none" overflow="visible" y="0" x="0" height="100%" width="100%" id="canvasGrid">
+   <rect fill="url(#gridpattern)" stroke-width="0" y="0" x="0" height="100%" width="100%"/>
+  </g>
+ </g>
+ <g>
+  <title>Layer 1</title>
+  <path stroke="#000000" id="svg_15" d="m402.000012,79.999998c0,33.137083 -50.14412,60.000001 -112.000028,60.000001m112.000028,-60.000001l0,0c0,33.137083 -50.14412,60.000001 -112.000028,60.000001c-61.855886,0 -111.999991,-26.862863 -111.999991,-60.000001m0,0l0,0c0,-33.137047 50.144105,-59.999983 111.999991,-59.999983c61.855908,0 112.000028,26.862936 112.000028,59.999983l0,240.000094c0,33.137047 -50.14412,59.999892 -112.000028,59.999892c-61.855886,0 -111.999991,-26.862845 -111.999991,-59.999892l0,-240.000094z" stroke-width="3" fill="#007fff"/>
+  <text font-weight="bold" xml:space="preserve" text-anchor="start" font-family="'Palatino Linotype', 'Book Antiqua', Palatino, serif" font-size="75" id="svg_13" y="279.5" x="215.976563" stroke-width="0" stroke="#000000" fill="#000000">צדקה</text>
+  <ellipse stroke-width="3" stroke="#000000" ry="57.5" rx="109.5" id="svg_18" cy="80.499999" cx="290" fill="#e5e5e5"/>
+  <rect id="svg_16" height="6" width="120" y="75" x="230" fill-opacity="null" stroke-opacity="null" stroke="#000000" fill="#000000"/>
+  <rect id="svg_17" height="0" width="1" y="237" x="902.5" fill-opacity="null" stroke-opacity="null" stroke="#000000" fill="#000000"/>
+ </g>
+</svg>
