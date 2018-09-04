@@ -40,6 +40,7 @@ function giveToBox() {
 function resetBox(){
     boxTotal = 0;
     document.getElementById("boxValue").innerHTML = "$" + boxTotal.toFixed(2); // To fixed formats as $0.00, instead of just $0
+    localStorage.setItem('boxTotal', '0');
 }
 
 function buildDonationLink() {
@@ -65,7 +66,7 @@ function buildDonationLink() {
 function donateBoxTotal() {
     console.log("You Donated!");
     buildDonationLink();
-    //console.log(donationLink); // Turn on window to launch actual payment.
+    console.log(donationLink); // Turn on window to launch actual payment.
     window.open(donationLink, 'Donate', width=100,height=100);
     resetBox();
 }
