@@ -2,7 +2,6 @@
     margin: auto;
     height: 95vh;
     width: auto;
-    border-style: dashed;
     background-color: white;
 }
 
@@ -25,8 +24,8 @@
   }
 
 .coin {
-    margin-left: 3vh;
-    margin-right: 3vh;
+    margin-left: 4vh;
+    margin-right: 4vh;
     height: 8vh;
     width: 8vh;
     border-radius: 50%;
@@ -37,10 +36,10 @@
 }
 
 .bill {
-    margin-left: 1.5vh;
-    margin-right: 1.5vh;
+    margin-left: 1vh;
+    margin-right: 1vh;
     height: 6vh;
-    width: 11.5vh;
+    width: 14vh;
     border: .5vh solid #dedeb9;
     background: #73886b;
     font-size: 3vh;
