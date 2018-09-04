@@ -9,6 +9,8 @@ var giveAmount = 0.00; // Holds value of donation before adding to box to confir
 
 var donationLink = ""
 
+var coinSound = new Audio('../Assets/Coin Sounds/zapsplat_foley_coin_drop_into_metal_collection_tin_006_21089.mp3');
+
 function loadSavedTotal() {
     boxTotal = parseInt(localStorage.boxTotal);
     document.getElementById("boxValue").innerHTML = "$" + (boxTotal/100).toFixed(2);
@@ -34,6 +36,9 @@ function giveToBox() {
     giveAmount = 0.00;
     document.getElementById("giveAmount").value = giveAmount.toFixed(2); // To fixed formats as $0.00, instead of just $0
     document.getElementById("giveButton").className = "coin hidden" // Hides button when no value to give
+
+    // Play coin sound
+    coinSound.play();
 
 } 
 
