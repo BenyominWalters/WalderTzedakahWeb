@@ -16,7 +16,7 @@ function loadSavedTotal() {
 
 function addValue(value) {
     value = parseInt(value); // Because value of button is string, converts to Int
-    console.log(value);
+   // console.log(value);
     giveAmount = giveAmount + value;
     document.getElementById("giveAmount").value = (giveAmount/100).toFixed(2);
     // Uses toFixed() to trim extra float zeros to display as a two decimal place for currency.
@@ -57,9 +57,9 @@ function buildDonationLink() {
         +'&no_note=0&cn=&amount='
         +donationAmount
         +'&curency_code=USD&bn=PP-DonationsBF:btn_donateCC_LG.gif:NonHosted';
-    console.log(boxTotal);
-    console.log(donationDecimal);
-    console.log(donationAmount);
+   // console.log(boxTotal);
+   // console.log(donationDecimal);
+   // console.log(donationAmount);
 }
 
 function donateBoxTotal() {
