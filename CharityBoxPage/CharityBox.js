@@ -65,7 +65,7 @@ function buildDonationLink() {
 function donateBoxTotal() {
     console.log("You Donated!");
     buildDonationLink();
-    console.log(donationLink); // Turn on window to launch actual payment.
-    // window.open(donationLink, 'Donate', width=100,height=100);
+    //console.log(donationLink); // Turn on window to launch actual payment.
+    window.open(donationLink, 'Donate', width=100,height=100);
     resetBox();
 }
