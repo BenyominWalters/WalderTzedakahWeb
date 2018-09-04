@@ -16,13 +16,29 @@ function loadSavedTotal() {
     document.getElementById("boxValue").innerHTML = "$" + (boxTotal/100).toFixed(2);
 }
 
+function showGiveButton() {
+    document.getElementById("giveButton").className = "coin visible"; // Makes button visible when has value to give
+}
+
+function hideGiveButton() {
+    document.getElementById("giveButton").className = "coin hidden"; // Hides button when no value to give
+}
+
+function showCoin(value) {
+    if (value > 0) {
+        showGiveButton();
+    } else {
+        hideGiveButton();
+    }
+}
+
 function addValue(value) {
     value = parseInt(value); // Because value of button is string, converts to Int
    // console.log(value);
     giveAmount = giveAmount + value;
     document.getElementById("giveAmount").value = (giveAmount/100).toFixed(2);
     // Uses toFixed() to trim extra float zeros to display as a two decimal place for currency.
-    document.getElementById("giveButton").className = "coin visible"; // Makes button visible when has value to give
+    showGiveButton();
 }
 
 function giveToBox() {
@@ -35,7 +51,7 @@ function giveToBox() {
     // Resets giveAmount
     giveAmount = 0.00;
     document.getElementById("giveAmount").value = giveAmount.toFixed(2); // To fixed formats as $0.00, instead of just $0
-    document.getElementById("giveButton").className = "coin hidden"; // Hides button when no value to give
+    hideGiveButton();
 
     // Play coin sound
     coinSound.play();
