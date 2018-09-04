@@ -22,7 +22,7 @@ function addValue(value) {
     giveAmount = giveAmount + value;
     document.getElementById("giveAmount").value = (giveAmount/100).toFixed(2);
     // Uses toFixed() to trim extra float zeros to display as a two decimal place for currency.
-    document.getElementById("giveButton").className = "coin visible" // Makes button visible when has value to give
+    document.getElementById("giveButton").className = "coin visible"; // Makes button visible when has value to give
 }
 
 function giveToBox() {
@@ -35,7 +35,7 @@ function giveToBox() {
     // Resets giveAmount
     giveAmount = 0.00;
     document.getElementById("giveAmount").value = giveAmount.toFixed(2); // To fixed formats as $0.00, instead of just $0
-    document.getElementById("giveButton").className = "coin hidden" // Hides button when no value to give
+    document.getElementById("giveButton").className = "coin hidden"; // Hides button when no value to give
 
     // Play coin sound
     coinSound.play();
