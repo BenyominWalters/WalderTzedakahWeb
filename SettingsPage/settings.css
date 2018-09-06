@@ -2,12 +2,36 @@ body {
     font-size: 2vh;
 }
 
+#closeButton {
+    font-family: 'WebSymbolsRegular'; 
+    font-weight: normal; 
+    font-style: normal;
+    font-size: 6vh;
+    color: #575757;
+    display: inline-block;
+    position:absolute;
+    top:0;
+    right:0;
+    background: none;
+    border-style: none;
+    padding: 2vh;
+    text-decoration: none;
+}
+
+#closeButton:hover,
+#closeButton:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
 h1 {
     text-align: center;
 }
 
 div {
-    width: 40%;
+    margin: 0 auto;
+    width: 50%;
     padding: 20px;
     border-radius: 5px;
     background-color: #f2f2f2;

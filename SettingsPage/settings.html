@@ -6,23 +6,29 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
     <link rel="stylesheet" href="settings.css">
+    <link rel="stylesheet" media="screen" href="https://fontlibrary.org/face/web-symbols" type="text/css"/>
+
     <script src="settings.js"></script>
 
     <title>Settings</title>
 </head>
 <body>
+<div id=settingsModal class="modal">
+    <nav>
+        <a id="closeButton" href="../CharityBoxPage/CharityBox.html">&#9447;</a>
+    </nav>
     <h1>Settings</h1>
-<div>
-    <form id="charityInfoForm" name="charityInfoForm" action=>
-        <label for="charityNameInput">Charity Name</label>
-        <input class="settingsInput" id="charityNameInput" name="charityNameInput" type="text" placeholder="Charity Name">
-        <br>
-        <label for="charityEmailInput">Charity Email</label>
-        <input class="settingsInput" id="charityEmailInput" name="charityEmailInput" type="email" placeholder="Charity Email">
-        <br>
-        <button class="button" id="settingsSubmitButton" onclick="saveSettings()">Submit</button>
-    </form>
+    <div>
+        <form id="charityInfoForm" name="charityInfoForm">
+            <label for="charityNameInput">Charity Name</label>
+            <input class="settingsInput" id="charityNameInput" name="charityNameInput" type="text" placeholder="Charity Name">
+            <br>
+            <label for="charityEmailInput">Charity Email</label>
+            <input class="settingsInput" id="charityEmailInput" name="charityEmailInput" type="email" placeholder="Charity Email">
+            <br>
+            <button class="button" id="settingsSubmitButton" onclick="saveSettings()">Submit</button>
+        </form>
+    </div>
 </div>
-
 </body>
 </html>
