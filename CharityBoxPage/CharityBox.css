@@ -9,14 +9,14 @@
     font-family: 'WebSymbolsRegular'; 
     font-weight: normal; 
     font-style: normal;
-    font-size: 6vw;
+    font-size: 6vh;
     color: #575757;
     position:absolute;
     top:0;
     right:0;
     background: none;
     border-style: none;
-    padding: 2vw;
+    padding: 2vh;
     text-decoration: none;
 }
 
@@ -29,7 +29,7 @@
 
 .space {
     display: block;
-    padding: 1em;
+    padding: 1vh;
 }
 
   /* Center value buttons with flexbox */

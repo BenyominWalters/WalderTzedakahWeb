@@ -34,12 +34,12 @@
     </div>
 
     <div id="giveButtonWrapper">
-        <div><form>
+        <form id="giveAmountForm" name="giveAmountForm">
             <div id="giveAmountWrapper">
                 Give $
-                <input id="giveAmount" type="number" min="0.00" max="10000.00" step="0.01" value="0.00" onChange="showCoin(this.value);">
+                <input id="giveAmount" name="giveAmount" type="number" min="0.00" max="10000.00" step="0.01" value="0.00" onChange="showCoin(this.value);">
             </div>
-        </form></div>
+        </form>
         <button class="coin hidden" id="giveButton" onclick="giveToBox()">Give!</button>
     </div>
 
