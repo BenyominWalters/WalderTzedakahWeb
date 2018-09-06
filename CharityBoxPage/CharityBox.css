@@ -5,11 +5,31 @@
     background-color: white;
 }
 
+#settingsButton {
+    font-family: 'WebSymbolsRegular'; 
+    font-weight: normal; 
+    font-style: normal;
+    font-size: 6vw;
+    color: #575757;
+    position:absolute;
+    top:0;
+    right:0;
+    background: none;
+    border-style: none;
+    padding: 2vw;
+    text-decoration: none;
+}
+
 .title {
     text-align: center;
     font-size: 5vh;
     margin-top: 2vh;
     margin-bottom: 1vh;
+}
+
+.space {
+    display: block;
+    padding: 1em;
 }
 
   /* Center value buttons with flexbox */
