@@ -24,21 +24,24 @@ function hideGiveButton() {
     document.getElementById("giveButton").className = "coin hidden"; // Hides button when no value to give
 }
 
-function showCoin(value) {
+function addValue(value) {
+    value = parseInt(value); // Because value of button is string, converts to Int
+    giveAmount = giveAmount + value;
+    document.getElementById("giveAmount").value = (giveAmount/100).toFixed(2);
+    // Uses toFixed() to trim extra float zeros to display as a two decimal place for currency.
+    showGiveButton();
+}
+
+function updateGiveAmount(value) {
+    editedValue = parseFloat(value) * 100;
+    giveAmount = editedValue;
+
+    // Show coin
     if (value > 0) {
         showGiveButton();
     } else {
         hideGiveButton();
     }
-}
-
-function addValue(value) {
-    value = parseInt(value); // Because value of button is string, converts to Int
-   // console.log(value);
-    giveAmount = giveAmount + value;
-    document.getElementById("giveAmount").value = (giveAmount/100).toFixed(2);
-    // Uses toFixed() to trim extra float zeros to display as a two decimal place for currency.
-    showGiveButton();
 }
 
 function giveToBox() {
