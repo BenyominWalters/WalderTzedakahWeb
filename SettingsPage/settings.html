@@ -14,11 +14,12 @@
 </head>
 <body>
 <div id=settingsModal class="modal">
-    <nav>
-        <a id="closeButton" href="../CharityBoxPage/CharityBox.html">&#9447;</a>
-    </nav>
-    <h1>Settings</h1>
-    <div>
+    
+    <div id="optionsFormWrapper">
+        <nav>
+            <a id="closeButton" href="../CharityBoxPage/CharityBox.html">&#9447;</a>
+        </nav>
+            <h1>Settings</h1>
         <form id="charityInfoForm" name="charityInfoForm">
             <label for="charityNameInput">Charity Name</label>
             <input class="settingsInput" id="charityNameInput" name="charityNameInput" type="text" placeholder="Charity Name">
@@ -30,5 +31,11 @@
         </form>
     </div>
 </div>
+
+<script>
+    if (localStorage.charityName || localStorage.charityEmail) {
+            loadSavedCharity() 
+        }
+</script>
 </body>
 </html>

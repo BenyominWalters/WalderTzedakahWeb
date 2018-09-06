@@ -1,20 +1,16 @@
-body {
-    font-size: 2vh;
+html {
+    font-size: 16px;
 }
-
 #closeButton {
     font-family: 'WebSymbolsRegular'; 
     font-weight: normal; 
     font-style: normal;
-    font-size: 6vh;
+    font-size: 2rem;
     color: #575757;
-    display: inline-block;
-    position:absolute;
-    top:0;
-    right:0;
+    float: right;
     background: none;
     border-style: none;
-    padding: 2vh;
+    padding: 1vh;
     text-decoration: none;
 }
 
@@ -29,9 +25,10 @@ h1 {
     text-align: center;
 }
 
-div {
+#optionsFormWrapper {
     margin: 0 auto;
     width: 50%;
+    min-width: 300px;
     padding: 20px;
     border-radius: 5px;
     background-color: #f2f2f2;
