@@ -1,7 +1,7 @@
 #charityBoxPage {
     margin: auto;
     height: 95vh;
-    width: auto;
+    width: 50vh;
     background-color: white;
 }
 
@@ -9,32 +9,28 @@
     font-family: 'WebSymbolsRegular'; 
     font-weight: normal; 
     font-style: normal;
-    font-size: 6vh;
+    font-size: 4vh;
     color: #575757;
-    position:absolute;
-    top:0;
-    right:0;
+    position: relative;
+    float:right;
     background: none;
     border-style: none;
-    padding: 2vh;
+    padding: 1vh;
     text-decoration: none;
 }
 
 .title {
     text-align: center;
     font-size: 5vh;
-    margin-top: 2vh;
+    margin-top: 1vh;
     margin-bottom: 1vh;
-}
-
-.space {
-    display: block;
-    padding: 1vh;
+    margin-left: 2rem; /* To ofset the settingsButton, keeping title centered */
 }
 
   /* Center value buttons with flexbox */
 .valueButtonsWrapper {
     padding-bottom: 1vh;
+    clear:both;
 }
 
   /* Center value buttons with flexbox */
