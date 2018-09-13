@@ -14,7 +14,7 @@
 </head>
 <body> 
 <div id="charityBoxPage">
-    <a id="settingsButton" href="../SettingsPage/settings.html">&#83;</a>
+    <button id="settingsButton">&#83;</button>
     
     <div class="title">My Tzedakah Box</div>
     
@@ -58,10 +58,25 @@
     </div>
 
 </div>
-<script>
-if (localStorage.boxTotal) {
-       loadSavedTotal() 
-    }
-</script>
+
+<div id=settingsModal class="modal">
+    
+    <div id="settingsFormWrapper" class="modal-content">
+        <div class="modal-header">
+            <span class="closeButton">&times;</span>
+            <h2>Settings</h2>
+        </div>
+        <form id="charityInfoForm" name="charityInfoForm">
+            <label for="charityNameInput" class="settingsLabel">Charity Name</label>
+            <input class="settingsInput" id="charityNameInput" name="charityNameInput" type="text" placeholder="Charity Name">
+            <br>
+            <label for="charityEmailInput" class="settingsLabel">Charity Email</label>
+            <input class="settingsInput" id="charityEmailInput" name="charityEmailInput" type="email" placeholder="Charity Email">
+            <br>
+            <button class="button" id="settingsSubmitButton" onclick="saveSettings()">Submit</button>
+        </form>
+    </div>
+</div>
+
 </body>
 </html>
