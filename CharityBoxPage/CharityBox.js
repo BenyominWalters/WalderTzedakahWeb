@@ -102,6 +102,9 @@ function donateBoxTotal() {
 
 window.onload = function() {
 
+    document.getElementById("charityName").innerHTML = localStorage.charityName || 'Walder Education';
+    document.getElementById("charityEmail").innerHTML = localStorage.charityEmail || 'teacherscenter@waldereducation.org';
+
     // Get the settings modal
     var modal = document.getElementById("settingsModal");
 
@@ -114,9 +117,6 @@ window.onload = function() {
     // Get the submit button
     var submitButton = document.getElementById("settingsSubmitButton");
 
-    var savedCharityName = "Walder Education"
-    var savedCharityEmail = "teacherscenter@waldereducation.org"
-
     // When the user clicks the button, open the modal 
     btn.onclick = function() {
         modal.style.display = "block";
@@ -124,7 +124,6 @@ window.onload = function() {
 
     // When the user clicks on <span> (x), close the modal
     span.onclick = function() {
-        console.log("click");
         modal.style.display = "none";
     }
 
@@ -136,11 +135,32 @@ window.onload = function() {
     }
 
     submitButton.onclick = function() {
-        alert("sumbitted");
+
+        let savedCharityEmail = localStorage.charityEmail || 'teacherscenter@waldereducation.org';
+        let savedCharityName = localStorage.charityName || 'Walder Education';
+        
         savedCharityName = document.getElementById("charityNameInput").value;
         localStorage.setItem("charityName", savedCharityName);
         savedCharityEmail = document.getElementById("charityEmailInput").value;
         localStorage.setItem("charityEmail", savedCharityEmail);
+
+        document.getElementById("charityName").innerHTML = localStorage.charityName || 'Walder Education';
+        document.getElementById("charityEmail").innerHTML = localStorage.charityEmail || 'teacherscenter@waldereducation.org';
+
+        document.getElementById("charityNameInput").value="";
+        document.getElementById("charityEmailInput").value="";
+
+        // Get the snackbar DIV
+        var x = document.getElementById("snackbar");
+
+        // Add the "show" class to DIV
+        x.className = "show";
+
+        // After 3 seconds, remove the show class from DIV
+        setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
+
+       event.preventDefault();
+        
     }
 
     if (localStorage) {

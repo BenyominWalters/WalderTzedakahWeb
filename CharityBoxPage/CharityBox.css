@@ -1,8 +1,17 @@
-#charityBoxPage {
-    margin: auto;
-    height: 95vh;
-    width: 50vh;
-    background-color: white;
+body {
+    margin: 0;
+}
+
+.navbar {
+    overflow: hidden;
+    background-color: rgb(0, 0, 0);
+    top: 0;
+    width: 100%;
+    margin-bottom: 2vh;
+}
+
+button:hover {
+    cursor: pointer;
 }
 
 #settingsButton {
@@ -10,7 +19,7 @@
     font-weight: normal; 
     font-style: normal;
     font-size: 4vh;
-    color: #575757;
+    color: rgb(218, 218, 218);
     position: relative;
     float:right;
     background: none;
@@ -19,12 +28,25 @@
     text-decoration: none;
 }
 
+#settingsButton:hover {
+    background: #ddd;
+    color: black;
+}
+
 .title {
     text-align: center;
-    font-size: 5vh;
+    font-size: 4vh;
+    color: white;
     margin-top: 1vh;
     margin-bottom: 1vh;
     margin-left: 2rem; /* To ofset the settingsButton, keeping title centered */
+}
+
+#charityBoxPage {
+    margin: auto;
+    height: 95vh;
+    width: 50vh;
+    background-color: white;
 }
 
   /* Center value buttons with flexbox */
@@ -200,6 +222,7 @@
     border: 1px solid #888;
     width: 80%;
     max-width: 600px;
+    height: 70%;
     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
     -webkit-animation-name: animatetop;
     -webkit-animation-duration: 0.4s;
@@ -208,7 +231,7 @@
     text-align: center;
 }
 
-/* Add Animation */
+/* Modal Animation */
 @-webkit-keyframes animatetop {
     from {top:-300px; opacity:0} 
     to {top:0; opacity:1}
@@ -242,6 +265,24 @@
     margin-bottom: .5rem;
 }
 
+#settingsInfoWrapper {
+    border-style: solid;
+    border-width: 1px;
+    padding: 1vh;
+    margin: 1.5vh 3vh;
+}
+
+#infoHeader {
+    font-weight: bold;
+    padding: 1vh;
+}
+
+.settingsInfo {
+    font-size: 2vh;
+    text-align: left;
+    padding-left: 2vh;
+}
+
 .settingsLabel {
     float: left;
     margin-left: 1rem;
@@ -256,11 +297,58 @@
 #settingsSubmitButton {
     width: 95%;
     padding: 1vh 2vh;
-    margin: .5vh 1vh;
+    margin-top: 2vh;
+    margin-bottom: 3vh;
     background-color: #4CAF50;
     color: white;
     border: none;
     border-radius: 12px;
-    cursor: pointer;
     font-size: 2vh;
+}
+
+/* The snackbar - position it at the bottom and in the middle of the screen */
+#snackbar {
+    visibility: hidden; /* Hidden by default. Visible on click */ 
+    width: 30vh; 
+    margin: auto; 
+    background-color: #333; /* Black background color */
+    color: #fff; /* White text color */
+    font-size: 2.5vh;
+    text-align: center; /* Centered text */
+    border-radius: 30px; /* Rounded borders */
+    padding: 2vh; /* Padding */
+    z-index: 1; /* Add a z-index if needed */
+    position: absolute;
+    left: 0; right: 0; /* Center the snackbar */
+    bottom: 15vh; /* distance from the bottom */
+}
+
+/* Show the snackbar when clicking on a button (class added with JavaScript) */
+#snackbar.show {
+    visibility: visible; /* Show the snackbar */
+    /* Add animation: Take 0.5 seconds to fade in and out the snackbar. 
+   However, delay the fade out process for 2.5 seconds */
+   -webkit-animation: fadein 0.5s, fadeout 0.5s 2.5s;
+   animation: fadein 0.5s, fadeout 0.5s 2.5s;
+}
+
+/* Animations to fade the snackbar in and out */
+@-webkit-keyframes fadein {
+    from {bottom: 0; opacity: 0;} 
+    to {bottom: 15vh; opacity: 1;}
+}
+
+@keyframes fadein {
+    from {bottom: 0; opacity: 0;}
+    to {bottom: 15vh; opacity: 1;}
+}
+
+@-webkit-keyframes fadeout {
+    from {bottom: 15vh; opacity: 1;} 
+    to {bottom: 0; opacity: 0;}
+}
+
+@keyframes fadeout {
+    from {bottom: 15vh; opacity: 1;}
+    to {bottom: 0; opacity: 0;}
 }

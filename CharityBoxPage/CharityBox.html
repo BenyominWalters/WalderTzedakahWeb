@@ -14,10 +14,12 @@
 </head>
 <body> 
 <div id="charityBoxPage">
-    <button id="settingsButton">&#83;</button>
-    
-    <div class="title">My Tzedakah Box</div>
-    
+
+    <div class="navbar">
+            <button class="button" id="settingsButton">&#83;</button>
+            <div class="title">My Tzedakah Box</div>
+    </div>
+   
     <div class="flex-container valueButtonsWrapper">
         <div></div>
         <button class="coin" value="1" onclick="addValue(this.value)">1¢</button>
@@ -66,16 +68,28 @@
             <span class="closeButton">&times;</span>
             <h2>Settings</h2>
         </div>
+
+        <div id="settingsInfoWrapper">
+            <div class="settingsInfo" id="infoHeader">Your Charity Info:</div>
+            <div class="settingsInfo" id="charityName">Walder Education</div>
+            <div class="settingsInfo" id="charityEmail">teacherscenter@waldereducation.org</div>
+        </div>
+        
+
         <form id="charityInfoForm" name="charityInfoForm">
-            <label for="charityNameInput" class="settingsLabel">Charity Name</label>
+            <div class="settingsLabel">Update Your Charity</div>
+    
             <input class="settingsInput" id="charityNameInput" name="charityNameInput" type="text" placeholder="Charity Name">
             <br>
-            <label for="charityEmailInput" class="settingsLabel">Charity Email</label>
             <input class="settingsInput" id="charityEmailInput" name="charityEmailInput" type="email" placeholder="Charity Email">
             <br>
             <button class="button" id="settingsSubmitButton" onclick="saveSettings()">Submit</button>
         </form>
+
+        <div class="snackbar" id="snackbar">Dafault charity updated.</div>
+
     </div>
+
 </div>
 
 </body>
