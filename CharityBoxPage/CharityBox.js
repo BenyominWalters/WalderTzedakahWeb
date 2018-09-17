@@ -7,6 +7,8 @@
 var boxTotal = 0;
 var giveAmount = 0.00; // Holds value of donation before adding to box to confirm.
 
+var fullAmount = 1800; // Amount to show donate
+
 var donationLink = ""
 
 var coinSound = new Audio('../Assets/Coin Sounds/zapsplat_foley_coin_drop_into_metal_collection_tin_006_21089.mp3');
@@ -21,12 +23,21 @@ function loadSaved() {
     document.getElementById("charityEmailInput").value = savedCharityEmail;
 }
 
-function showGiveButton() {
-    document.getElementById("giveButton").className = "coin visible"; // Makes button visible when has value to give
+function showButton(buttonName) {
+document.getElementById(buttonName).style.visibility = "visible"; // Makes button visible when box not full
 }
 
-function hideGiveButton() {
-    document.getElementById("giveButton").className = "coin hidden"; // Hides button when no value to give
+function hideButton(buttonName) {
+    document.getElementById(buttonName).style.visibility = "hidden"; // Hides button when box full
+}
+
+function checkIfFull() {
+    if (boxTotal >= fullAmount) {
+        showButton("donateButton");
+    } else {
+        hideButton("donateButton")
+        }
+    
 }
 
 function addValue(value) {
@@ -34,7 +45,7 @@ function addValue(value) {
     giveAmount = giveAmount + value;
     document.getElementById("giveAmount").value = (giveAmount/100).toFixed(2);
     // Uses toFixed() to trim extra float zeros to display as a two decimal place for currency.
-    showGiveButton();
+    showButton("giveButton");
 }
 
 function updateGiveAmount(value) {
@@ -43,9 +54,9 @@ function updateGiveAmount(value) {
 
     // Show coin
     if (value > 0) {
-        showGiveButton();
+        showButton("giveButton");
     } else {
-        hideGiveButton();
+        hideButton("giveButton");
     }
 }
 
@@ -59,10 +70,13 @@ function giveToBox() {
     // Resets giveAmount
     giveAmount = 0.00;
     document.getElementById("giveAmount").value = giveAmount.toFixed(2); // To fixed formats as $0.00, instead of just $0
-    hideGiveButton();
+    hideButton("giveButton");
 
     // Play coin sound
     coinSound.play();
+
+// Check if full to show Donate Button
+    checkIfFull();
 
 } 
 
@@ -70,6 +84,7 @@ function resetBox(){
     boxTotal = 0;
     document.getElementById("boxValue").innerHTML = "$" + boxTotal.toFixed(2); // To fixed formats as $0.00, instead of just $0
     localStorage.setItem('boxTotal', '0');
+    hideButton("donateButton");
 }
 
 function buildDonationLink() {
@@ -87,9 +102,9 @@ function buildDonationLink() {
         +'&no_note=0&cn=&amount='
         +donationAmount
         +'&curency_code=USD&bn=PP-DonationsBF:btn_donateCC_LG.gif:NonHosted';
-   // console.log(boxTotal);
-   // console.log(donationDecimal);
-   // console.log(donationAmount);
+// console.log(boxTotal);
+// console.log(donationDecimal);
+// console.log(donationAmount);
 }
 
 function donateBoxTotal() {
@@ -164,7 +179,8 @@ window.onload = function() {
     }
 
     if (localStorage) {
-        loadSaved()
+        loadSaved();
+        checkIfFull();
     }
 
 }

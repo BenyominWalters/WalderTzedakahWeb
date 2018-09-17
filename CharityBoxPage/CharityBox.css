@@ -73,6 +73,10 @@ button:hover {
     color: #707070;
 }
 
+.coin:hover {
+    transform: translateY(4px);
+}
+
 .bill {
     margin-left: 1vh;
     margin-right: 1vh;
@@ -83,6 +87,23 @@ button:hover {
     font-size: 3vh;
     color: #dedeb9;
 }
+
+.bill:hover {
+    transform: translateY(4px);
+}
+
+.giveCoin {
+    margin-left: 4vh;
+    margin-right: 4vh;
+    height: 8vh;
+    width: 8vh;
+    border-radius: 50%;
+    border: .5vh solid #A9A9A9;
+    background: #C0C0C0;
+    font-size: 3vh;
+    color: #707070;
+}
+
 /* Give Button */
 #giveAmountWrapper {
     margin: 0 auto;
@@ -190,13 +211,17 @@ button:hover {
     text-align: center;
 }
 
-#donateButtonWrapper button {
+.donateButton {
     background-color: #ffc438; /* Gold */
     color: black;
     border: none;
     padding: 1vh 2vh;
     font-size: 4vh;
     width: 40vh;
+}
+
+.donateButton:hover {
+    background-color: #eba500; /* Gray Gold */
 }
 
 /* The Modal (background) */
@@ -247,7 +272,7 @@ button:hover {
 .closeButton {
     color: white;
     float: right;
-    font-size: 28px;
+    font-size: 4vh;
     font-weight: bold;
 }
 
@@ -264,6 +289,11 @@ button:hover {
     color: white;
     text-align: center;
     margin-bottom: .5rem;
+}
+
+.modal-header h2 {
+    font-size: 4vh;
+    margin: 0;
 }
 
 #settingsInfoWrapper {
@@ -305,6 +335,10 @@ button:hover {
     border: none;
     border-radius: 12px;
     font-size: 2vh;
+}
+
+#settingsSubmitButton:hover {
+    background-color: #3e8e41;
 }
 
 /* The snackbar - position it at the bottom and in the middle of the screen */
