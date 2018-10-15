@@ -14,7 +14,7 @@ var donationLink = ""
 var coinSound = new Audio('../Assets/Coin Sounds/zapsplat_foley_coin_drop_into_metal_collection_tin_006_21089.mp3');
 
 function loadSaved() {
-    boxTotal = parseInt(localStorage.boxTotal);
+    boxTotal = parseInt(localStorage.boxTotal || 0);
     document.getElementById("boxValue").innerHTML = "$" + (boxTotal/100).toFixed(2);
 
     savedCharityName = localStorage.charityName;
@@ -22,7 +22,7 @@ function loadSaved() {
     savedCharityEmail = localStorage.charityEmail;
     document.getElementById("charityEmailInput").value = savedCharityEmail;
 
-    fullAmount = localStorage.fullAmount;
+    fullAmount = localStorage.fullAmount || 18.00;
 }
 
 function showButton(buttonName) {
