@@ -7,7 +7,7 @@
 var boxTotal = 0;
 var giveAmount = 0.00; // Holds value of donation before adding to box to confirm.
 
-var fullAmount = 1800; // Amount to show donate
+var fullAmount = 18.00; // Amount to show donate
 
 var donationLink = ""
 
@@ -21,6 +21,8 @@ function loadSaved() {
     document.getElementById("charityNameInput").value = savedCharityName;
     savedCharityEmail = localStorage.charityEmail;
     document.getElementById("charityEmailInput").value = savedCharityEmail;
+
+    fullAmount = localStorage.fullAmount;
 }
 
 function showButton(buttonName) {
@@ -119,12 +121,13 @@ window.onload = function() {
 
     document.getElementById("charityName").innerHTML = localStorage.charityName || 'Walder Education';
     document.getElementById("charityEmail").innerHTML = localStorage.charityEmail || 'teacherscenter@waldereducation.org';
+    document.getElementById("fullAmount").placeholder = "$" + (localStorage.fullAmount/100).toFixed(2)  || '$18.00';
 
     // Get the settings modal
     var modal = document.getElementById("settingsModal");
 
     // Get the button that opens the modal
-    var btn = document.getElementById("settingsButton");
+    var settingsButton = document.getElementById("settingsButton");
 
     // Get the <span> element that closes the modal
     var span = document.getElementsByClassName("closeButton")[0];
@@ -132,8 +135,12 @@ window.onload = function() {
     // Get the submit button
     var submitButton = document.getElementById("settingsSubmitButton");
 
+    // Get the Update Minimum Button
+
+    var fullAmountButton = document.getElementById("fullAmountButton");
+
     // When the user clicks the button, open the modal 
-    btn.onclick = function() {
+    settingsButton.onclick = function() {
         modal.style.display = "block";
     }
 
@@ -166,16 +173,29 @@ window.onload = function() {
         document.getElementById("charityEmailInput").value="";
 
         // Get the snackbar DIV
-        var x = document.getElementById("snackbar");
+        var updatedSnackbar = document.getElementById("snackbar");
 
         // Add the "show" class to DIV
-        x.className = "show";
+        updatedSnackbar.className = "show";
 
         // After 3 seconds, remove the show class from DIV
-        setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
+        setTimeout(function(){ updatedSnackbar.className = updatedSnackbar.className.replace("show", ""); }, 3000);
 
        event.preventDefault();
         
+    }
+
+    fullAmountButton.onclick = function() {
+        fullAmount = document.getElementById("fullAmount").value * 100;
+        console.log(document.getElementById("fullAmount").value);
+        console.log(fullAmount)
+        localStorage.setItem("fullAmount", fullAmount);
+
+        //if (fullAmount >= boxTotal) {
+        //    showButton("donateButton");
+        //}
+
+        checkIfFull();
     }
 
     if (localStorage) {
