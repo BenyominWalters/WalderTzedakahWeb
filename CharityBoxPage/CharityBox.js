@@ -14,15 +14,17 @@ var donationLink = ""
 var coinSound = new Audio('../Assets/Coin Sounds/zapsplat_foley_coin_drop_into_metal_collection_tin_006_21089.mp3');
 
 function loadSaved() {
-    boxTotal = parseInt(localStorage.boxTotal || 0);
+    boxTotal = parseInt(localStorage.boxTotal) || 0;
     document.getElementById("boxValue").innerHTML = "$" + (boxTotal/100).toFixed(2);
 
-    savedCharityName = localStorage.charityName;
+    savedCharityName = localStorage.charityName || 'Walder Education';
     document.getElementById("charityNameInput").value = savedCharityName;
-    savedCharityEmail = localStorage.charityEmail;
+    savedCharityEmail = localStorage.charityEmail || 'teacherscenter@waldereducation.org';
     document.getElementById("charityEmailInput").value = savedCharityEmail;
 
-    fullAmount = localStorage.fullAmount || 18.00;
+    fullAmount = parseInt(localStorage.fullAmount) || 18.00;
+    document.getElementById("fullAmount").value = fullAmount.toFixed(2);
+    document.getElementById("fullAmountLabel").innerHTML = '$' + fullAmount.toFixed(2);
 }
 
 function showButton(buttonName) {
@@ -104,9 +106,7 @@ function buildDonationLink() {
         +'&no_note=0&cn=&amount='
         +donationAmount
         +'&curency_code=USD&bn=PP-DonationsBF:btn_donateCC_LG.gif:NonHosted';
-// console.log(boxTotal);
-// console.log(donationDecimal);
-// console.log(donationAmount);
+
 }
 
 function donateBoxTotal() {
@@ -118,10 +118,6 @@ function donateBoxTotal() {
 }
 
 window.onload = function() {
-
-    document.getElementById("charityName").innerHTML = localStorage.charityName || 'Walder Education';
-    document.getElementById("charityEmail").innerHTML = localStorage.charityEmail || 'teacherscenter@waldereducation.org';
-    document.getElementById("fullAmount").placeholder = "$" + (localStorage.fullAmount/100).toFixed(2)  || '$18.00';
 
     // Get the settings modal
     var modal = document.getElementById("settingsModal");
@@ -161,10 +157,15 @@ window.onload = function() {
         let savedCharityEmail = localStorage.charityEmail || 'teacherscenter@waldereducation.org';
         let savedCharityName = localStorage.charityName || 'Walder Education';
         
-        savedCharityName = document.getElementById("charityNameInput").value;
-        localStorage.setItem("charityName", savedCharityName);
-        savedCharityEmail = document.getElementById("charityEmailInput").value;
-        localStorage.setItem("charityEmail", savedCharityEmail);
+        if (document.getElementById("charityNameInput").value != null) {
+            savedCharityName = document.getElementById("charityNameInput").value;
+            localStorage.setItem("charityName", savedCharityName);
+        }
+        
+        if (document.getElementById("charityEmailInput").value != null) {
+            savedCharityEmail = document.getElementById("charityEmailInput").value;
+            localStorage.setItem("charityEmail", savedCharityEmail);
+        }
 
         document.getElementById("charityName").innerHTML = localStorage.charityName || 'Walder Education';
         document.getElementById("charityEmail").innerHTML = localStorage.charityEmail || 'teacherscenter@waldereducation.org';
@@ -186,21 +187,16 @@ window.onload = function() {
     }
 
     fullAmountButton.onclick = function() {
-        fullAmount = document.getElementById("fullAmount").value * 100;
-        console.log(document.getElementById("fullAmount").value);
-        console.log(fullAmount)
+        fullAmount = parseFloat(document.getElementById("fullAmount").value) || 18;
         localStorage.setItem("fullAmount", fullAmount);
-
-        //if (fullAmount >= boxTotal) {
-        //    showButton("donateButton");
-        //}
+        document.getElementById("fullAmount").value = fullAmount.toFixed(2);
+        document.getElementById("fullAmountLabel").innerHTML = '$' + fullAmount.toFixed(2);
 
         checkIfFull();
+
+        event.preventDefault();
     }
 
-    if (localStorage) {
         loadSaved();
         checkIfFull();
-    }
-
 }
