@@ -46,18 +46,20 @@ function checkIfFull() {
 
 function addValue(value) {
     value = parseInt(value); // Because value of button is string, converts to Int
-    giveAmount = giveAmount + value;
+   
+    giveAmount = (giveAmount || 0) + value;
     document.getElementById("giveAmount").value = (giveAmount/100).toFixed(2);
     // Uses toFixed() to trim extra float zeros to display as a two decimal place for currency.
     showButton("giveButton");
 }
 
 function updateGiveAmount(value) {
-    editedValue = parseFloat(value) * 100;
-    giveAmount = editedValue;
+    editedValue = parseFloat(value) * 100 || 0;
+    
+    giveAmount = editedValue || 0.00;
 
     // Show coin
-    if (value > 0) {
+    if (editedValue > 0) {
         showButton("giveButton");
     } else {
         hideButton("giveButton");
@@ -110,9 +112,9 @@ function buildDonationLink() {
 }
 
 function donateBoxTotal() {
-    console.log("You Donated!");
+    // console.log("You Donated!");
     buildDonationLink();
-    console.log(donationLink); // Turn on window to launch actual payment.
+    // console.log(donationLink); // Turn on window to launch actual payment.
     window.open(donationLink, 'Donate', width=100,height=100);
     resetBox();
 }
