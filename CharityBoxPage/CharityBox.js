@@ -117,6 +117,22 @@ function donateBoxTotal() {
     resetBox();
 }
 
+function showSnackBar(message) {
+
+        // Get the snackbar DIV
+        var updatedSnackbar = document.getElementById("snackbar");
+
+        // Change the message of snackbar
+        updatedSnackbar.innerHTML = message;
+
+        // Add the "show" class to DIV
+        updatedSnackbar.className = "show";
+
+        // After 3 seconds, remove the show class from DIV
+        setTimeout(function(){ updatedSnackbar.className = updatedSnackbar.className.replace("show", ""); }, 3000);
+
+}
+
 window.onload = function() {
 
     // Get the settings modal
@@ -173,16 +189,9 @@ window.onload = function() {
         document.getElementById("charityNameInput").value="";
         document.getElementById("charityEmailInput").value="";
 
-        // Get the snackbar DIV
-        var updatedSnackbar = document.getElementById("snackbar");
+        showSnackBar("Default Charity Updated");
 
-        // Add the "show" class to DIV
-        updatedSnackbar.className = "show";
-
-        // After 3 seconds, remove the show class from DIV
-        setTimeout(function(){ updatedSnackbar.className = updatedSnackbar.className.replace("show", ""); }, 3000);
-
-       event.preventDefault();
+        return false;
         
     }
 
@@ -192,9 +201,11 @@ window.onload = function() {
         document.getElementById("fullAmount").value = fullAmount.toFixed(2);
         document.getElementById("fullAmountLabel").innerHTML = '$' + fullAmount.toFixed(2);
 
+        showSnackBar("Minimum Donation Updated");
+
         checkIfFull();
 
-        event.preventDefault();
+        return false;
     }
 
         loadSaved();
