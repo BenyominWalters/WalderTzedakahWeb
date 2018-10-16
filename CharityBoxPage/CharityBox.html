@@ -76,7 +76,7 @@
         </div>
         
 
-        <form id="charityInfoForm" name="charityInfoForm">
+        <form id="charityInfoForm" name="charityInfoForm" onsubmit="return false;">
             <div class="settingsLabel">Your Charity</div>
     
             <input class="settingsInput" id="charityNameInput" name="charityNameInput" type="text" placeholder="Charity Name">
@@ -86,9 +86,9 @@
             <button class="settingsButton" id="settingsSubmitButton">Update Charity</button>
             <br>
 
-            <div class="settingsLabel">Your Minimum Donation Amount: <div style= "display:inline-block" id="fullAmountLabel"></div></div>
+            <div class="settingsLabel">Your Minimum Donation Amount: <div style= "display:inline-block" id="fullAmount"></div></div>
             <br>
-            <input class="settingsInput" id="fullAmount" name="fullAmount" type="number" min="0.00" max="1000.00" step="0.01" placeholder="Minimum Donation">
+            <input class="settingsInput" id="fullAmountInput" name="fullAmount" type="number" min="0.00" max="1000.00" step="0.01" placeholder="Minimum Donation">
             <button class="settingsButton" id="fullAmountButton">Update Minimum Donation</button>
         </form>
 

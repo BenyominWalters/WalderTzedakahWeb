@@ -23,8 +23,8 @@ function loadSaved() {
     document.getElementById("charityEmailInput").value = savedCharityEmail;
 
     fullAmount = parseInt(localStorage.fullAmount) || 18.00;
-    document.getElementById("fullAmount").value = fullAmount.toFixed(2);
-    document.getElementById("fullAmountLabel").innerHTML = '$' + fullAmount.toFixed(2);
+    document.getElementById("fullAmountInput").value = fullAmount.toFixed(2);
+    document.getElementById("fullAmount").innerHTML = '$' + fullAmount.toFixed(2);
 }
 
 function showButton(buttonName) {
@@ -135,23 +135,14 @@ function showSnackBar(message) {
 
 window.onload = function() {
 
-    // Get the settings modal
+    // Get the settings modal and its elements
     var modal = document.getElementById("settingsModal");
+    var settingsButton = document.getElementById("settingsButton"); // Button that opens the modal
+    var span = document.getElementsByClassName("closeButton")[0]; // <span> element that closes the modal
+    var submitButton = document.getElementById("settingsSubmitButton"); // Submit button
+    var fullAmountButton = document.getElementById("fullAmountButton"); // Update Minimum Button
 
-    // Get the button that opens the modal
-    var settingsButton = document.getElementById("settingsButton");
-
-    // Get the <span> element that closes the modal
-    var span = document.getElementsByClassName("closeButton")[0];
-
-    // Get the submit button
-    var submitButton = document.getElementById("settingsSubmitButton");
-
-    // Get the Update Minimum Button
-
-    var fullAmountButton = document.getElementById("fullAmountButton");
-
-    // When the user clicks the button, open the modal 
+    // When the user clicks the Settings button, open the modal 
     settingsButton.onclick = function() {
         modal.style.display = "block";
     }
@@ -173,35 +164,54 @@ window.onload = function() {
         let savedCharityEmail = localStorage.charityEmail || 'teacherscenter@waldereducation.org';
         let savedCharityName = localStorage.charityName || 'Walder Education';
         
-        if (document.getElementById("charityNameInput").value != null) {
+        if (document.getElementById("charityNameInput").value == "") {
+
+            showSnackBar("Please include Charity Name");
+            document.getElementById("charityNameInput").value = localStorage.charityName || 'Walder Education';
+
+        } else if (document.getElementById("charityEmailInput").value == "") {
+
+            showSnackBar("Please include Charity Email");
+            document.getElementById("charityEmailInput").value = localStorage.charityEmail ||  'teacherscenter@waldereducation.org';
+
+        } else {
+            
             savedCharityName = document.getElementById("charityNameInput").value;
             localStorage.setItem("charityName", savedCharityName);
-        }
-        
-        if (document.getElementById("charityEmailInput").value != null) {
+
             savedCharityEmail = document.getElementById("charityEmailInput").value;
             localStorage.setItem("charityEmail", savedCharityEmail);
-        }
+            
+            document.getElementById("charityName").innerHTML = localStorage.charityName || 'Walder Education';
+            document.getElementById("charityEmail").innerHTML = localStorage.charityEmail || 'teacherscenter@waldereducation.org';
 
-        document.getElementById("charityName").innerHTML = localStorage.charityName || 'Walder Education';
-        document.getElementById("charityEmail").innerHTML = localStorage.charityEmail || 'teacherscenter@waldereducation.org';
+            document.getElementById("charityNameInput").value = localStorage.charityName;
+            document.getElementById("charityEmailInput").value = localStorage.charityEmail;
 
-        document.getElementById("charityNameInput").value="";
-        document.getElementById("charityEmailInput").value="";
+            showSnackBar("Default Charity Updated");
 
-        showSnackBar("Default Charity Updated");
+        }       
 
         return false;
         
     }
 
     fullAmountButton.onclick = function() {
-        fullAmount = parseFloat(document.getElementById("fullAmount").value) || 18;
-        localStorage.setItem("fullAmount", fullAmount);
-        document.getElementById("fullAmount").value = fullAmount.toFixed(2);
-        document.getElementById("fullAmountLabel").innerHTML = '$' + fullAmount.toFixed(2);
 
-        showSnackBar("Minimum Donation Updated");
+        if (document.getElementById("fullAmountInput").value == "") {
+
+            showSnackBar("Enter A Minimum Amount");
+            document.getElementById("fullAmountInput").value = fullAmount.toFixed(2);
+
+        } else {
+            fullAmount = parseFloat(document.getElementById("fullAmountInput").value);
+            localStorage.setItem("fullAmountInput", fullAmount);
+            document.getElementById("fullAmountInput").value = fullAmount.toFixed(2);
+            document.getElementById("fullAmount").innerHTML = '$' + fullAmount.toFixed(2);
+    
+            showSnackBar("Minimum Donation Updated");
+        }
+        
 
         checkIfFull();
 

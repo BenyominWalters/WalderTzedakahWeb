@@ -339,7 +339,7 @@ button:hover {
     background-color: #3e8e41;
 }
 
-#fullAmount {
+#fullAmountInput {
    max-width: 10rem;
    float: left;
    margin-left: 1rem;
