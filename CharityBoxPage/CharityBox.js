@@ -36,7 +36,7 @@ function hideButton(buttonName) {
 }
 
 function checkIfFull() {
-    if (boxTotal >= fullAmount) {
+    if (boxTotal >= fullAmount * 100) {
         showButton("donateButton");
     } else {
         hideButton("donateButton")
