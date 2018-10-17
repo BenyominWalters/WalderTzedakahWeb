@@ -209,7 +209,7 @@ window.onload = function() {
             fullAmount = parseFloat(document.getElementById("fullAmountInput").value);
             localStorage.setItem("fullAmountInput", fullAmount);
             document.getElementById("fullAmountInput").value = fullAmount.toFixed(2);
-            document.getElementById("fullAmount").innerHTML = '$' + fullAmount.toFixed(2);
+            //document.getElementById("fullAmount").innerHTML = '$' + fullAmount.toFixed(2);
     
             showSnackBar("Minimum Donation Updated");
         }
