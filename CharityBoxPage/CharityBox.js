@@ -24,7 +24,7 @@ function loadSaved() {
 
     fullAmount = parseInt(localStorage.fullAmount) || 18.00;
     document.getElementById("fullAmountInput").value = fullAmount.toFixed(2);
-    document.getElementById("fullAmount").innerHTML = '$' + fullAmount.toFixed(2);
+    //document.getElementById("fullAmount").innerHTML = '$' + fullAmount.toFixed(2);
 }
 
 function showButton(buttonName) {
