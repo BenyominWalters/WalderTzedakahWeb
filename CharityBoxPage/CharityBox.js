@@ -1,8 +1,4 @@
-/* Basic functionality for Tzedakah Box.
-    Clicking on value buttons should add appropriate value to total in box.
-    Clicking donate will open paypal link, and clear value of box.
-    Add giveAmount to confirm how much you want to add?
-*/
+
 
 var boxTotal = 0;
 var giveAmount = 0.00; // Holds value of donation before adding to box to confirm.
@@ -176,21 +172,30 @@ window.onload = function() {
             showSnackBar("Please include Charity Email");
             document.getElementById("charityEmailInput").value = localStorage.charityEmail ||  'teacherscenter@waldereducation.org';
 
+        } else if (document.getElementById("fullAmountInput").value == "") {
+
+            showSnackBar("Enter A Minimum Amount");
+            document.getElementById("fullAmountInput").value = fullAmount.toFixed(2);
+
         } else {
             
+            // Update Charity Name, Email, and Full Amount, save values to Local Storage, and display new values in form
             savedCharityName = document.getElementById("charityNameInput").value;
             localStorage.setItem("charityName", savedCharityName);
 
             savedCharityEmail = document.getElementById("charityEmailInput").value;
-            localStorage.setItem("charityEmail", savedCharityEmail);
+            localStorage.setItem("charityEmail", savedCharityEmail)
+
+            fullAmount = parseFloat(document.getElementById("fullAmountInput").value);
+            localStorage.setItem("fullAmountInput", fullAmount);
             
-            document.getElementById("charityName").innerHTML = localStorage.charityName || 'Walder Education';
-            document.getElementById("charityEmail").innerHTML = localStorage.charityEmail || 'teacherscenter@waldereducation.org';
+            document.getElementById("charityNameInput").value = localStorage.charityName || 'Walder Education';
+            document.getElementById("charityEmailInput").value = localStorage.charityEmail || 'teacherscenter@waldereducation.org';
+            document.getElementById("fullAmountInput").value = fullAmount.toFixed(2);
 
-            document.getElementById("charityNameInput").value = localStorage.charityName;
-            document.getElementById("charityEmailInput").value = localStorage.charityEmail;
+            showSnackBar("Updated Settings");
 
-            showSnackBar("Default Charity Updated");
+            checkIfFull();
 
         }       
 
@@ -198,27 +203,27 @@ window.onload = function() {
         
     }
 
-    fullAmountButton.onclick = function() {
+    // fullAmountButton.onclick = function() {
 
-        if (document.getElementById("fullAmountInput").value == "") {
+    //     if (document.getElementById("fullAmountInput").value == "") {
 
-            showSnackBar("Enter A Minimum Amount");
-            document.getElementById("fullAmountInput").value = fullAmount.toFixed(2);
+    //         showSnackBar("Enter A Minimum Amount");
+    //         document.getElementById("fullAmountInput").value = fullAmount.toFixed(2);
 
-        } else {
-            fullAmount = parseFloat(document.getElementById("fullAmountInput").value);
-            localStorage.setItem("fullAmountInput", fullAmount);
-            document.getElementById("fullAmountInput").value = fullAmount.toFixed(2);
-            //document.getElementById("fullAmount").innerHTML = '$' + fullAmount.toFixed(2);
+    //     } else {
+    //         fullAmount = parseFloat(document.getElementById("fullAmountInput").value);
+    //         localStorage.setItem("fullAmountInput", fullAmount);
+    //         document.getElementById("fullAmountInput").value = fullAmount.toFixed(2);
+    //         //document.getElementById("fullAmount").innerHTML = '$' + fullAmount.toFixed(2);
     
-            showSnackBar("Minimum Donation Updated");
-        }
+    //         showSnackBar("Minimum Donation Updated");
+    //     }
         
 
-        checkIfFull();
+    //     checkIfFull();
 
-        return false;
-    }
+    //     return false;
+    // }
 
         loadSaved();
         checkIfFull();

@@ -227,7 +227,7 @@ button:hover {
     display: none; /* Hidden by default */
     position: fixed; /* Stay in place */
     z-index: 2; /* Sit on top of charityBoxWrapper */
-    padding-top: 100px; /* Location of the box */
+    padding-top: 8vh; /* Location of the box */
     left: 0;
     top: 0;
     width: 100%; /* Full width */
@@ -246,7 +246,9 @@ button:hover {
     border: 1px solid #888;
     width: 80%;
     max-width: 600px;
-    height: 70%;
+    height: 80%;
+    max-height: calc(100vh - 50px);
+    overflow-y: auto;
     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
     -webkit-animation-name: animatetop;
     -webkit-animation-duration: 0.4s;
@@ -281,11 +283,6 @@ button:hover {
     cursor: pointer;
 }
 
-.modal-content {
-    max-height: calc(100vh - 210px);
-    overflow-y: auto;
-}
-
 .modal-header {
     padding: .5rem 1rem;
     background-color: #5cb85c;
@@ -295,31 +292,14 @@ button:hover {
 }
 
 .modal-header h2 {
-    font-size: 4vh;
+    font-size: 2rem;
     margin: 0;
-}
-
-#settingsInfoWrapper {
-    border-style: solid;
-    border-width: 1px;
-    padding: 1vh;
-    margin: 1.5vh 3vh;
-}
-
-#infoHeader {
-    font-weight: bold;
-    padding: 1vh;
-}
-
-.settingsInfo {
-    font-size: 2vh;
-    text-align: left;
-    padding-left: 2vh;
 }
 
 .settingsLabel {
     float: left;
     margin-left: 1rem;
+    font-weight: bold;
 }
 
 .settingsInput {
@@ -343,12 +323,6 @@ button:hover {
 .settingsButton:hover {
     background-color: #3e8e41;
 }
-
-/* #fullAmountInput {
-   max-width: 10rem;
-   float: left;
-   margin-left: 1rem;
-} */
 
 /* The snackbar - position it at the bottom and in the middle of the screen */
 #snackbar {

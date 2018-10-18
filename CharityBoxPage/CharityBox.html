@@ -69,27 +69,18 @@
             <h2>Settings</h2>
         </div>
 
-        <div id="settingsInfoWrapper">
-            <div class="settingsInfo" id="infoHeader">Your Charity Info:</div>
-            <div class="settingsInfo" id="charityName">Walder Education</div>
-            <div class="settingsInfo" id="charityEmail">teacherscenter@waldereducation.org</div>
-        </div>
-        
-
         <form id="charityInfoForm" name="charityInfoForm" onsubmit="return false;">
-            <div class="settingsLabel">Your Charity</div>
+            <div class="settingsLabel">Charity Name</div>
     
             <input class="settingsInput" id="charityNameInput" name="charityNameInput" type="text" placeholder="Charity Name">
             <br>
+            <div class="settingsLabel">Charity Email</div>
             <input class="settingsInput" id="charityEmailInput" name="charityEmailInput" type="email" placeholder="Charity Email">
             <br>
-            <button class="settingsButton" id="settingsSubmitButton">Update Charity</button>
-            <br>
-
-            <div class="settingsLabel">Your Minimum Donation Amount:<!--<div style= "display:inline-block" id="fullAmount"></div>--></div>
+            <div class="settingsLabel">Minimum Donation Amount</div>
             <br>
             <input class="settingsInput" id="fullAmountInput" name="fullAmount" type="number" min="0.00" max="1000.00" step="0.01" placeholder="Minimum Donation">
-            <button class="settingsButton" id="fullAmountButton">Update Minimum Donation</button>
+            <button class="settingsButton" id="settingsSubmitButton">Update</button>
         </form>
 
         <div class="snackbar" id="snackbar">Dafault charity updated.</div>
