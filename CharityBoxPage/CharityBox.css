@@ -182,6 +182,59 @@ button:hover {
     font-size: 5vh;
 }
 
+.edit-button {
+    position: absolute;
+    top: 80%;
+    height: 0;
+    width: 80%;
+    margin-left: 70%;
+}
+
+.edit-button:hover {
+    cursor: pointer;
+}
+.edit-button:hover .edit-button-primary {
+    box-shadow: 1px 0 0 0 rgba(0, 0, 0, .1);
+}
+.edit-button:hover .edit-button-secondary-content {
+    transform: translate3d(0, 0, 0);
+}
+
+.edit-button-primary {
+    position: absolute;
+    background: #555555;
+    width: 4vh;
+    height: 4vh;
+    border-radius: 4vh;
+    left: 0;
+    top: 50%;
+    line-height: 4vh;
+    color: white;
+    font-weight: bold;
+}
+
+.edit-button-secondary {
+    overflow: hidden;
+    margin-left: 2vh;
+    height: 4vh;
+}
+.edit-button-secondary-content {
+    font-family: sans-serif;
+    font-size: 2vh;
+    background: rgb(255, 75, 75);
+    display: block;
+    height: 4vh;
+    line-height: 4vh;
+    text-align: left;
+    padding-left: 3vh;
+    padding-right: 2vh;
+    color: white;
+    border-style: none;
+    border-radius: 0 2vh 2vh 0;
+    transform: translate3d(-100%, 0, 0);
+    transition: transform 175ms ease;
+}
+
 #boxName {
     position: absolute;
     top: 40%;

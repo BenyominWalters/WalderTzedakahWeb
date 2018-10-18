@@ -80,7 +80,13 @@ function giveToBox() {
 // Check if full to show Donate Button
     checkIfFull();
 
-} 
+}
+
+function editBoxTotal(){
+    if (confirm('Reset your box?')) {
+        resetBox()
+    }
+}
 
 function resetBox(){
     boxTotal = 0;
