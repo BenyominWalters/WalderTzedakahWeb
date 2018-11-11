@@ -6,9 +6,38 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
     <link rel="stylesheet" href="CharityBox.css">
+<<<<<<< Updated upstream
     <link rel="stylesheet" media="screen" href="https://fontlibrary.org/face/web-symbols" type="text/css"/>
 
     <script src="CharityBox.js"></script>
+=======
+
+    <script src="https://www.gstatic.com/firebasejs/5.5.7/firebase.js"></script>
+
+    <!-- Add additional services that you want to use -->
+    <script src="https://www.gstatic.com/firebasejs/5.5.7/firebase-auth.js"></script>
+    <!-- <script src="https://www.gstatic.com/firebasejs/5.5.7/firebase-database.js"></script> -->
+    <script src="https://www.gstatic.com/firebasejs/5.5.7/firebase-firestore.js"></script>
+    <!-- <script src="https://www.gstatic.com/firebasejs/5.5.7/firebase-messaging.js"></script> -->
+    <!-- <script src="https://www.gstatic.com/firebasejs/5.5.7/firebase-functions.js"></script> -->
+    <!-- <script src="https://www.gstatic.com/firebasejs/5.5.7/firebase-storage.js"></script> -->
+    <!-- Comment out (or don't include) services that you don't want to use -->
+    
+    <script>
+        // Initialize Firebase
+        var config = {
+            apiKey: "AIzaSyDKR9FIcB9ecS5FRmwqiEuIPy8ZCvA0Gp8",
+            authDomain: "walder-tzedakah-app.firebaseapp.com",
+            databaseURL: "https://walder-tzedakah-app.firebaseio.com",
+            projectId: "walder-tzedakah-app",
+            storageBucket: "walder-tzedakah-app.appspot.com",
+            messagingSenderId: "787850966633"
+        };
+        firebase.initializeApp(config);
+    </script>
+
+<script type="text/javascript" src="CharityBox.js" async></script>
+>>>>>>> Stashed changes
 
     <title>Tzedakah Box</title>
 </head>
@@ -60,4 +89,5 @@ if (localStorage.boxTotal) {
     }
 </script>
 </body>
+
 </html>
