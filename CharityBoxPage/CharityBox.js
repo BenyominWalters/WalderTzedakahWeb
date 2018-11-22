@@ -9,6 +9,27 @@ var donationLink = ""
 
 var coinSound = new Audio('../Assets/Coin Sounds/zapsplat_foley_coin_drop_into_metal_collection_tin_006_21089.mp3');
 
+Parse.initialize("0edbc24c4194a2bf17fb28b4b17a84befdf22537");
+Parse.serverURL = "http://3.16.162.6:80/parse/";
+
+const SavedBoxTotal = Parse.Object.extend("SavedBoxTotal");
+const savedBoxTotal = new SavedBoxTotal();
+
+// savedBoxTotal.set("total", 1800);
+
+savedBoxTotal.save({
+    total: 1337,
+  })
+  .then((savedBoxTotal) => {
+    // The object was saved successfully.
+    alert("Total saved");
+  }, (error) => {
+    // The save failed.
+    // error is a Parse.Error with an error code and message.
+    alert('Failed to create new object, with error code: ' + error.message);
+  });
+  
+
 function loadSaved() {
     boxTotal = parseInt(localStorage.boxTotal) || 0;
     document.getElementById("boxValue").innerHTML = "$" + (boxTotal/100).toFixed(2);
