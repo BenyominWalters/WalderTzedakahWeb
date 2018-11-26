@@ -108,17 +108,17 @@
   class="close" title="Close Modal">&times;</span>
   
     <!-- Login Modal Content -->
-    <form class="modal-content animate" action="/action_page.php">
+    <form class="modal-content animate" name="LoginForm" onsubmit="return false;">
       <div class="imgcontainer">
         <img src="../walder-education-logo-CL.jpg" alt="Avatar" class="avatar">
       </div>
   
       <div class="container">
         <label for="uname"><b>Username</b></label>
-        <input type="text" placeholder="Enter Username" name="uname" required>
+        <input type="text" id="usernameInput" placeholder="Enter Username" name="uname" required>
   
         <label for="psw"><b>Password</b></label>
-        <input type="password" placeholder="Enter Password" name="psw" required>
+        <input type="password" id="passwordInput" placeholder="Enter Password" name="psw" required>
   
         <button id="loginButton" type="submit">Log In</button>
         <label>

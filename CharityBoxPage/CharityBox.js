@@ -9,25 +9,29 @@ var donationLink = ""
 
 var coinSound = new Audio('../Assets/Coin Sounds/zapsplat_foley_coin_drop_into_metal_collection_tin_006_21089.mp3');
 
-// Parse.initialize("0edbc24c4194a2bf17fb28b4b17a84befdf22537");
-// Parse.serverURL = "http://3.16.162.6:80/parse/";
+var loginModal = document.getElementById('id01');
+var login = true;
 
-// const SavedBoxTotal = Parse.Object.extend("SavedBoxTotal");
-// const savedBoxTotal = new SavedBoxTotal();
+Parse.initialize("0edbc24c4194a2bf17fb28b4b17a84befdf22537");
+Parse.serverURL = "http://3.16.162.6:80/parse/";
 
-// // savedBoxTotal.set("total", 1800);
+const SavedBoxTotal = Parse.Object.extend("SavedBoxTotal");
+const savedBoxTotal = new SavedBoxTotal();
+const user = new Parse.User();
 
-// savedBoxTotal.save({
-//     total: 1337,
-//   })
-//   .then((savedBoxTotal) => {
-//     // The object was saved successfully.
-//     alert("Total saved");
-//   }, (error) => {
-//     // The save failed.
-//     // error is a Parse.Error with an error code and message.
-//     alert('Failed to create new object, with error code: ' + error.message);
-//   });
+// savedBoxTotal.set("total", 1800);
+
+savedBoxTotal.save({
+    total: 1337,
+  })
+  .then((savedBoxTotal) => {
+    // The object was saved successfully.
+    alert("Total saved");
+  }, (error) => {
+    // The save failed.
+    // error is a Parse.Error with an error code and message.
+    alert('Failed to create new object, with error code: ' + error.message);
+  });
   
 
 function loadSaved() {
@@ -167,7 +171,7 @@ window.onload = function() {
     var settingsButton = document.getElementById("settingsButton"); // Button that opens the modal
     var span = document.getElementsByClassName("closeButton")[0]; // <span> element that closes the modal
     var submitButton = document.getElementById("settingsSubmitButton"); // Submit button
-    var fullAmountButton = document.getElementById("fullAmountButton"); // Update Minimum Button
+    var loginButton = document.getElementById("loginButton"); // login
 
     // When the user clicks the Settings button, open the modal 
     settingsButton.onclick = function() {
@@ -232,44 +236,28 @@ window.onload = function() {
         
     }
 
-    // fullAmountButton.onclick = function() {
+    loginButton.onclick = function () {
+        let myUsername = document.getElementById("usernameInput").value;
+        let myPassword = document.getElementById("passwordInput").value;
 
-    //     if (document.getElementById("fullAmountInput").value == "") {
+        user.set("username", myUsername);
+        user.set("password", myPassword);
+        //user.set("email", "email@example.com");
 
-    //         showSnackBar("Enter A Minimum Amount");
-    //         document.getElementById("fullAmountInput").value = fullAmount.toFixed(2);
+       signUp();
 
-    //     } else {
-    //         fullAmount = parseFloat(document.getElementById("fullAmountInput").value);
-    //         localStorage.setItem("fullAmountInput", fullAmount);
-    //         document.getElementById("fullAmountInput").value = fullAmount.toFixed(2);
-    //         //document.getElementById("fullAmount").innerHTML = '$' + fullAmount.toFixed(2);
-    
-    //         showSnackBar("Minimum Donation Updated");
-    //     }
-        
-
-    //     checkIfFull();
-
-    //     return false;
-    // }
+    }
 
         loadSaved();
         checkIfFull();
 }
 
-//Login Modal open and close
-// Get the modal
-var loginModal = document.getElementById('id01');
-// // Open Login Modal is in onload function for settings modal
-// // When the user clicks anywhere outside of the modal, close it
+// When the user clicks anywhere outside of the Login modal, close it
 window.addEventListener('click', function(event) {
     if (event.target == loginModal) {
         loginModal.style.display = "none";
     }
 });
-
-var login = true;
 
 function toggleLogInButton() {
 
@@ -282,5 +270,19 @@ function toggleLogInButton() {
         document.getElementById("toggleLoginLink").innerHTML="Sign Up instead?";
         login = true;
     }
+
+}
+
+async function signUp() {
+
+    try {
+        await user.signUp();
+        // Hooray! Let them use the app now.
+        loginModal.style.display = "none";
+        showSnackBar("Sign Up Successful!");
+      } catch (error) {
+        // Show the error message somewhere and let the user try again.
+        alert("Error: " + error.code + " " + error.message);
+      }
 
 }
