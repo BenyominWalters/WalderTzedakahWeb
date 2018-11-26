@@ -159,6 +159,8 @@ function showSnackBar(message) {
 }
 
 window.onload = function() {
+    // Show login modal
+    loginModal.style.display = "block";
 
     // Get the settings modal and its elements
     var modal = document.getElementById("settingsModal");
@@ -259,13 +261,26 @@ window.onload = function() {
 //Login Modal open and close
 // Get the modal
 var loginModal = document.getElementById('id01');
-// Open onload
-window.onload = function() {
-    loginModal.style.display = "block";
-}
-// When the user clicks anywhere outside of the modal, close it
-window.onclick = function(event) {
+// // Open Login Modal is in onload function for settings modal
+// // When the user clicks anywhere outside of the modal, close it
+window.addEventListener('click', function(event) {
     if (event.target == loginModal) {
         loginModal.style.display = "none";
     }
+});
+
+var login = true;
+
+function toggleLogInButton() {
+
+    if (login){
+        document.getElementById("loginButton").innerHTML="Sign Up";
+        document.getElementById("toggleLoginLink").innerHTML="Log In instead?";
+        login = false;
+    } else {
+        document.getElementById("loginButton").innerHTML="Log In";
+        document.getElementById("toggleLoginLink").innerHTML="Sign Up instead?";
+        login = true;
+    }
+
 }
