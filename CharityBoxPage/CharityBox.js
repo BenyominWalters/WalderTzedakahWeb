@@ -17,7 +17,9 @@ Parse.serverURL = "http://3.16.162.6:80/parse/";
 
 const SavedBoxTotal = Parse.Object.extend("SavedBoxTotal");
 const savedBoxTotal = new SavedBoxTotal();
-const user = new Parse.User();
+
+var user = new Parse.User();
+
 
 // savedBoxTotal.set("total", 1800);
 
@@ -244,7 +246,11 @@ window.onload = function() {
         user.set("password", myPassword);
         //user.set("email", "email@example.com");
 
-       signUp();
+        if (login) {
+           logIn(myUsername, myPassword);
+        } else {
+           signUp();
+        }
 
     }
 
@@ -273,6 +279,20 @@ function toggleLogInButton() {
 
 }
 
+async function logIn(myUsername, myPassword) { 
+
+    try {
+        user = await Parse.User.logIn(myUsername, myPassword);
+        alert("Logged In!");
+        loginModal.style.display = "none";
+
+        } catch (error) {
+        // Show the error message somewhere and let the user try again.
+        alert("Error: " + error.code + " " + error.message);
+    }
+
+}
+
 async function signUp() {
 
     try {
@@ -280,9 +300,9 @@ async function signUp() {
         // Hooray! Let them use the app now.
         loginModal.style.display = "none";
         showSnackBar("Sign Up Successful!");
-      } catch (error) {
+        } catch (error) {
         // Show the error message somewhere and let the user try again.
         alert("Error: " + error.code + " " + error.message);
-      }
+    }
 
 }
