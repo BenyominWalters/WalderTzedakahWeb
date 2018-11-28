@@ -8,6 +8,7 @@ var fullAmount = 18.00; // Amount to show donate
 var donationLink = ""
 
 var coinSound = new Audio('../Assets/Coin Sounds/zapsplat_foley_coin_drop_into_metal_collection_tin_006_21089.mp3');
+//coinSound.preload = "auto";
 
 var loginModal = document.getElementById('id01');
 var login = true;
@@ -16,24 +17,31 @@ Parse.initialize("0edbc24c4194a2bf17fb28b4b17a84befdf22537");
 Parse.serverURL = "http://3.16.162.6:80/parse/";
 
 const SavedBoxTotal = Parse.Object.extend("SavedBoxTotal");
+const query = new Parse.Query(SavedBoxTotal);
 const savedBoxTotal = new SavedBoxTotal();
 
 var user = new Parse.User();
 
+//clearObjects();
 
-// savedBoxTotal.set("total", 1800);
-
-savedBoxTotal.save({
-    total: 1337,
-  })
-  .then((savedBoxTotal) => {
-    // The object was saved successfully.
-    alert("Total saved");
-  }, (error) => {
-    // The save failed.
-    // error is a Parse.Error with an error code and message.
-    alert('Failed to create new object, with error code: ' + error.message);
-  });
+async function clearObjects() {
+    query.greaterThanOrEqualTo("total", 0);
+    const results = await query.find();
+    for (let i = 0; i < results.length; i++) {
+        console.log("Successfully retrieved " + results.length + " totals.");    
+        var object = results[i];
+        object.destroy().then((object) => {
+            // The object was deleted from the Parse Cloud.
+            console.log("Removed object " + object.id);
+          }, (error) => {
+            // The delete failed.
+            // error is a Parse.Error with an error code and message.
+            alert(error.message);
+          });
+    
+    
+    }
+}
   
 
 function loadSaved() {
@@ -48,6 +56,18 @@ function loadSaved() {
     fullAmount = parseInt(localStorage.fullAmount) || 18.00;
     document.getElementById("fullAmountInput").value = fullAmount.toFixed(2);
     //document.getElementById("fullAmount").innerHTML = '$' + fullAmount.toFixed(2);
+
+    savedBoxTotal.set("total", boxTotal);
+
+    savedBoxTotal.save()
+      .then((savedBoxTotal) => {
+        // The object was saved successfully.
+        console.log("Total saved as: " + savedBoxTotal.get("total"));
+      }, (error) => {
+        // The save failed.
+        // error is a Parse.Error with an error code and message.
+        alert('Failed to create new object, with error code: ' + error.message);
+      });
 }
 
 function showButton(buttonName) {
@@ -90,6 +110,9 @@ function updateGiveAmount(value) {
 }
 
 function giveToBox() {
+    // Play coin sound
+    coinSound.play();
+    
     boxTotal = boxTotal + giveAmount;
     document.getElementById("boxValue").innerHTML = "$" + (boxTotal/100).toFixed(2); // Uses toFixed() to trim extra float zeros to display as a two decimal place for currency.
     
@@ -100,9 +123,6 @@ function giveToBox() {
     giveAmount = 0.00;
     document.getElementById("giveAmount").value = giveAmount.toFixed(2); // To fixed formats as $0.00, instead of just $0
     hideButton("giveButton");
-
-    // Play coin sound
-    coinSound.play();
 
 // Check if full to show Donate Button
     checkIfFull();
