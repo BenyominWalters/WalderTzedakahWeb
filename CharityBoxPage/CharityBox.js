@@ -63,6 +63,9 @@ function updateGiveAmount(value) {
 }
 
 function giveToBox() {
+    // Play coin sound
+    coinSound.play();
+
     boxTotal = boxTotal + giveAmount;
     document.getElementById("boxValue").innerHTML = "$" + (boxTotal/100).toFixed(2); // Uses toFixed() to trim extra float zeros to display as a two decimal place for currency.
     
@@ -74,10 +77,7 @@ function giveToBox() {
     document.getElementById("giveAmount").value = giveAmount.toFixed(2); // To fixed formats as $0.00, instead of just $0
     hideButton("giveButton");
 
-    // Play coin sound
-    coinSound.play();
-
-// Check if full to show Donate Button
+    // Check if full to show Donate Button
     checkIfFull();
 
 }
