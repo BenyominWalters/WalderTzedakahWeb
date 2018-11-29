@@ -114,27 +114,29 @@
       </div>
   
       <div class="container">
-        <label for="uname"><b>Username</b></label>
-        <input type="text" id="usernameInput" placeholder="Enter Username" name="uname" required>
+        <label class="settingsLabel" for="uname"><b>Username</b></label>
+        <input type="text" class="settingsInput" id="usernameInput" placeholder="Enter Username" name="uname" required>
         <br>
   
-        <label for="psw"><b>Password</b></label>
-        <input type="password" id="passwordInput" placeholder="Enter Password" name="psw" required>
+        <label class="settingsLabel" for="psw"><b>Password</b></label>
+        <input type="password" class="settingsInput" id="passwordInput" placeholder="Enter Password" name="psw" required>
         <br>
         <div id="emailWrapper" style="display: none;">
-        <label for="email"><b>Email</b></label>
-        <input type="email" id="emailInput" placeholder="Enter Email" name="email" required>
+        <label class="settingsLabel" for="email"><b>Email</b></label>
+        <input type="email" class="settingsInput" id="emailInput" placeholder="Enter Email (for password reset)" name="email" required>
         <br>
         </div>
 
-        <button id="loginButton" type="submit">Log In</button>
+        <button class="loginButton" id="loginButton" type="submit">Log In</button>
+        <br>
         <label>
-          <input type="checkbox" checked="checked" name="remember"> Remember me
+          <input class="checkbox" type="checkbox" checked="checked" name="remember"> Remember me
         </label>
-        <span class="signup"><a href="#" id="toggleLoginLink" onclick="toggleLogInButton()">Sign Up instead?</a></span>
+        <div class="spacer"></div>
+        <div class="signup"><a href="#" id="toggleLoginLink" onclick="toggleLogInButton()">Sign Up instead?</a></div>
       </div>
-  
-      <div class="container" style="background-color:#f1f1f1">
+      <br>
+      <div class="cancelcontainer">
         <button type="button" onclick="document.getElementById('loginModal').style.display='none'" class="cancelbtn">Cancel</button>
         <span class="psw">Forgot <a href="#" onclick="resetPassword()">password?</a></span>
       </div>
