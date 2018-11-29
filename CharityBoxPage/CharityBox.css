@@ -427,7 +427,7 @@ button:hover {
 /* Styles for Login Modal */
 
 /* Set a style for all buttons */
-#id01 button {
+#loginModal button {
     background-color: #4CAF50;
     color: white;
     padding: 14px 20px;
@@ -437,7 +437,7 @@ button:hover {
     width: 100%;
 }
 
-#id01 button:hover {
+#loginModal button:hover {
     opacity: 0.8;
 }
 

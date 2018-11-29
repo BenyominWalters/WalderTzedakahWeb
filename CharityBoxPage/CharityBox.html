@@ -103,8 +103,8 @@
 </div>
 
 <!-- Login Modal -->
-<div id="id01" class="modal">
-    <span onclick="document.getElementById('id01').style.display='none'" 
+<div id="loginModal" class="modal">
+    <span onclick="document.getElementById('loginModal').style.display='none'" 
   class="close" title="Close Modal">&times;</span>
   
     <!-- Login Modal Content -->
@@ -116,10 +116,17 @@
       <div class="container">
         <label for="uname"><b>Username</b></label>
         <input type="text" id="usernameInput" placeholder="Enter Username" name="uname" required>
+        <br>
   
         <label for="psw"><b>Password</b></label>
         <input type="password" id="passwordInput" placeholder="Enter Password" name="psw" required>
-  
+        <br>
+        <div id="emailWrapper" style="display: none;">
+        <label for="email"><b>Email</b></label>
+        <input type="email" id="emailInput" placeholder="Enter Email" name="email" required>
+        <br>
+        </div>
+
         <button id="loginButton" type="submit">Log In</button>
         <label>
           <input type="checkbox" checked="checked" name="remember"> Remember me
@@ -128,8 +135,8 @@
       </div>
   
       <div class="container" style="background-color:#f1f1f1">
-        <button type="button" onclick="document.getElementById('id01').style.display='none'" class="cancelbtn">Cancel</button>
-        <span class="psw">Forgot <a href="#">password?</a></span>
+        <button type="button" onclick="document.getElementById('loginModal').style.display='none'" class="cancelbtn">Cancel</button>
+        <span class="psw">Forgot <a href="#" onclick="resetPassword()">password?</a></span>
       </div>
     </form>
   </div>

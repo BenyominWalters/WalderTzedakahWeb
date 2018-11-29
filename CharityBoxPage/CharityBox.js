@@ -10,52 +10,38 @@ var donationLink = ""
 var coinSound = new Audio('../Assets/Coin Sounds/zapsplat_foley_coin_drop_into_metal_collection_tin_006_21089.mp3');
 //coinSound.preload = "auto";
 
-var loginModal = document.getElementById('id01');
+var loginModal = document.getElementById('loginModal');
 var login = true;
 
 Parse.initialize("0edbc24c4194a2bf17fb28b4b17a84befdf22537");
 Parse.serverURL = "http://3.16.162.6:80/parse/";
 
-const SavedBoxTotal = Parse.Object.extend("SavedBoxTotal");
-const query = new Parse.Query(SavedBoxTotal);
-const savedBoxTotal = new SavedBoxTotal();
-
-var user = new Parse.User();
+// const SavedBoxTotal = Parse.Object.extend("SavedBoxTotal");
+// const query = new Parse.Query(SavedBoxTotal);
+// const savedBoxTotal = new SavedBoxTotal();
 
 //clearObjects();
 
-async function clearObjects() {
-    query.greaterThanOrEqualTo("total", 0);
-    const results = await query.find();
-    for (let i = 0; i < results.length; i++) {
-        console.log("Successfully retrieved " + results.length + " totals.");    
-        var object = results[i];
-        object.destroy().then((object) => {
-            // The object was deleted from the Parse Cloud.
-            console.log("Removed object " + object.id);
-          }, (error) => {
-            // The delete failed.
-            // error is a Parse.Error with an error code and message.
-            alert(error.message);
-          });
+// async function clearObjects() {
+//     query.greaterThanOrEqualTo("total", 0);
+//     const results = await query.find();
+//     for (let i = 0; i < results.length; i++) {
+//         console.log("Successfully retrieved " + results.length + " totals.");    
+//         var object = results[i];
+//         object.destroy().then((object) => {
+//             // The object was deleted from the Parse Cloud.
+//             console.log("Removed object " + object.id);
+//           }, (error) => {
+//             // The delete failed.
+//             // error is a Parse.Error with an error code and message.
+//             alert(error.message);
+//           });
     
     
-    }
-}
-  
+//     }
+// }
 
-function loadSaved() {
-    boxTotal = parseInt(localStorage.boxTotal) || 0;
-    document.getElementById("boxValue").innerHTML = "$" + (boxTotal/100).toFixed(2);
-
-    savedCharityName = localStorage.charityName || 'Walder Education';
-    document.getElementById("charityNameInput").value = savedCharityName;
-    savedCharityEmail = localStorage.charityEmail || 'teacherscenter@waldereducation.org';
-    document.getElementById("charityEmailInput").value = savedCharityEmail;
-
-    fullAmount = parseInt(localStorage.fullAmount) || 18.00;
-    document.getElementById("fullAmountInput").value = fullAmount.toFixed(2);
-    //document.getElementById("fullAmount").innerHTML = '$' + fullAmount.toFixed(2);
+function saveToParse() {
 
     savedBoxTotal.set("total", boxTotal);
 
@@ -68,6 +54,23 @@ function loadSaved() {
         // error is a Parse.Error with an error code and message.
         alert('Failed to create new object, with error code: ' + error.message);
       });
+
+}
+
+function loadSaved() {
+
+    boxTotal = parseInt(localStorage.boxTotal) || 0;
+    document.getElementById("boxValue").innerHTML = "$" + (boxTotal/100).toFixed(2);
+
+    savedCharityName = localStorage.charityName || 'Walder Education';
+    document.getElementById("charityNameInput").value = savedCharityName;
+    savedCharityEmail = localStorage.charityEmail || 'teacherscenter@waldereducation.org';
+    document.getElementById("charityEmailInput").value = savedCharityEmail;
+
+    fullAmount = parseInt(localStorage.fullAmount) || 18.00;
+    document.getElementById("fullAmountInput").value = fullAmount.toFixed(2);
+    //document.getElementById("fullAmount").innerHTML = '$' + fullAmount.toFixed(2);
+
 }
 
 function showButton(buttonName) {
@@ -118,6 +121,8 @@ function giveToBox() {
     
     // Save total to localStorage
     localStorage.boxTotal = boxTotal;
+
+    saveToParse();
     
     // Resets giveAmount
     giveAmount = 0.00;
@@ -261,15 +266,12 @@ window.onload = function() {
     loginButton.onclick = function () {
         let myUsername = document.getElementById("usernameInput").value;
         let myPassword = document.getElementById("passwordInput").value;
-
-        user.set("username", myUsername);
-        user.set("password", myPassword);
-        //user.set("email", "email@example.com");
+        let myEmail = document.getElementById("emailInput").value;
 
         if (login) {
            logIn(myUsername, myPassword);
         } else {
-           signUp();
+           signUp(myUsername, myPassword, myEmail);
         }
 
     }
@@ -290,10 +292,12 @@ function toggleLogInButton() {
     if (login){
         document.getElementById("loginButton").innerHTML="Sign Up";
         document.getElementById("toggleLoginLink").innerHTML="Log In instead?";
+        document.getElementById("emailWrapper").style.display = "inline";
         login = false;
     } else {
         document.getElementById("loginButton").innerHTML="Log In";
         document.getElementById("toggleLoginLink").innerHTML="Sign Up instead?";
+        document.getElementById("emailWrapper").style.display = "none";
         login = true;
     }
 
@@ -313,16 +317,36 @@ async function logIn(myUsername, myPassword) {
 
 }
 
-async function signUp() {
+async function signUp(myUsername, myPassword, myEmail) {
+    var user = new Parse.User();
+
+    user.set("username", myUsername);
+    user.set("password", myPassword);
+    user.set("email", myEmail);
+    user.set("total", 0);
+    user.set("charityName", "Walder Education");
+    user.set("charityEmail", "teacherscenter@waldereducation.org");
+    user.set("fullAmount", "1800");
 
     try {
         await user.signUp();
         // Hooray! Let them use the app now.
         loginModal.style.display = "none";
-        showSnackBar("Sign Up Successful!");
+        alert("Sign Up Successful!");
         } catch (error) {
         // Show the error message somewhere and let the user try again.
         alert("Error: " + error.code + " " + error.message);
     }
 
+}
+
+function resetPassword() {
+    Parse.User.requestPasswordReset(user.get("email"), {
+        success: function() {
+            console.log("Password reset request was sent successfully");
+        },
+        error: function(error) {
+            console.log("The login failed with error: " + error.code + " " + error.message);
+        }
+    });
 }
