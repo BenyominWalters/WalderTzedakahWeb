@@ -23,10 +23,41 @@ var userCharityName = "Walder Education";
 var userCharityEmail = "teacherscenter@waldereducation.org"
 var userFullAmount = 18.00;
 
+function refreshUser() {
+    var currentUser = Parse.User.current();
+    if (currentUser) {
+        user.fetch().then(function(fetchedUser){
+            username = fetchedUser.getUsername();
+            userTotal = fetchedUser.get("total");
+            userCharityName = fetchedUser.get("CharityName");
+            userCharityEmail = fetchedUser.get("CharityEmail");
+            userFullAmount = fetchedUser.get("FullAmoung");
+            console.log("Welcome " + username);
+            loadSaved();
+        }, function(error){
+            console.log(error.message);
+        });
+    } else {
+        loginModal.style.display = "block";
+    }
+}
 
 function saveToParse() {
 
-  user.save
+    console.log("Saved!")
+
+    user.set("total", boxTotal);
+
+    user.save(null, {
+        success: function(user) {
+            user.fetch();
+            console.log("Successfully saved.");
+            console.log(user.get('total'));
+        },
+        error: function(user, error) {
+            alert('Failed to update object, with error code: ' + error.message);
+        }
+    });
 
 }
 
@@ -160,21 +191,7 @@ function showSnackBar(message) {
 
 window.onload = function() {
 
-var currentUser = Parse.User.current();
-    if (currentUser) {
-        user.fetch().then(function(fetchedUser){
-            username = fetchedUser.getUsername();
-            userTotal = fetchedUser.get("total");
-            userCharityName = fetchedUser.get("CharityName");
-            userCharityEmail = fetchedUser.get("CharityEmail");
-            userFullAmount = fetchedUser.get("FullAmoung");
-            alert("Welcome " + username);
-        }, function(error){
-            console.log(error.message);
-        });
-    } else {
-        loginModal.style.display = "block";
-    }
+    refreshUser();
 
     // Get the settings modal and its elements
     var modal = document.getElementById("settingsModal");
@@ -290,6 +307,7 @@ async function logIn(myUsername, myPassword) {
 
     try {
         user = await Parse.User.logIn(myUsername, myPassword);
+        refreshUser();
         alert("Logged In!");
         loginModal.style.display = "none";
 
@@ -314,6 +332,7 @@ async function signUp(myUsername, myPassword, myEmail) {
     try {
         await user.signUp();
         // Hooray! Let them use the app now.
+        refreshUser();
         loginModal.style.display = "none";
         alert("Sign Up Successful!");
         } catch (error) {
@@ -327,8 +346,10 @@ function logout() {
     Parse.User.logOut().then(() => {
         currentUser = Parse.User.current();  // this will now be null
       });
+    location.reload();
     alert("You have successfully logged out.");
     loginModal.style.display = "block";
+    resetBox();
 
 }
 
