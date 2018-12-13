@@ -34,6 +34,7 @@ function refreshUser() {
             userFullAmount = fetchedUser.get("FullAmoung");
             console.log("Welcome " + username);
             loadSaved();
+            checkIfFull();
         }, function(error){
             console.log(error.message);
         });
@@ -143,13 +144,13 @@ function editBoxTotal(){
 function resetBox(){
     boxTotal = 0;
     document.getElementById("boxValue").innerHTML = "$" + boxTotal.toFixed(2); // To fixed formats as $0.00, instead of just $0
-    localStorage.setItem('boxTotal', '0');
+    saveToParse();
     hideButton("donateButton");
 }
 
 function buildDonationLink() {
-    let charityEmail = localStorage.charityEmail || 'teacherscenter@waldereducation.org';
-    let charityName = localStorage.charityName || 'Walder Education';
+    let charityEmail = userCharityEmail || 'teacherscenter@waldereducation.org';
+    let charityName = userCharityName || 'Walder Education';
     let donationInteger = boxTotal.toString().slice(0, -2); // Separates whole dollar value from boxTotal--removes last two digits
     let donationDecimal = boxTotal.toString().slice(-2).padStart(2, '0'); // Separates decimal values from boxTotal--keeps only last two digits, adds leading zero if less than 0.10
     let donationAmount = donationInteger +'%2e'+ donationDecimal;
@@ -219,18 +220,18 @@ window.onload = function() {
 
     submitButton.onclick = function() {
 
-        let savedCharityEmail = localStorage.charityEmail || 'teacherscenter@waldereducation.org';
-        let savedCharityName = localStorage.charityName || 'Walder Education';
+        let savedCharityEmail = userCharityEmail || 'teacherscenter@waldereducation.org';
+        let savedCharityName = userCharityName || 'Walder Education';
         
         if (document.getElementById("charityNameInput").value == "") {
 
             showSnackBar("Please include Charity Name");
-            document.getElementById("charityNameInput").value = localStorage.charityName || 'Walder Education';
+            document.getElementById("charityNameInput").value = userCharityName || 'Walder Education';
 
         } else if (document.getElementById("charityEmailInput").value == "") {
 
             showSnackBar("Please include Charity Email");
-            document.getElementById("charityEmailInput").value = localStorage.charityEmail ||  'teacherscenter@waldereducation.org';
+            document.getElementById("charityEmailInput").value = userCharityEmail ||  'teacherscenter@waldereducation.org';
 
         } else if (document.getElementById("fullAmountInput").value == "") {
 
@@ -241,16 +242,27 @@ window.onload = function() {
             
             // Update Charity Name, Email, and Full Amount, save values to Local Storage, and display new values in form
             savedCharityName = document.getElementById("charityNameInput").value;
-            localStorage.setItem("charityName", savedCharityName);
+            user.set("charityName", savedCharityName);
 
             savedCharityEmail = document.getElementById("charityEmailInput").value;
-            localStorage.setItem("charityEmail", savedCharityEmail)
+            user.set("charityEmail", savedCharityEmail);
 
             fullAmount = parseFloat(document.getElementById("fullAmountInput").value);
-            localStorage.setItem("fullAmountInput", fullAmount);
+            user.set("fullAmount", fullAmount);
+
+            user.save(null, {
+                success: function(user) {
+                    user.fetch();
+                    console.log("Successfully saved settings.");
+                },
+                error: function(user, error) {
+                    alert('Failed to update object, with error code: ' + error.message);
+                }
+            });
+            refreshUser();
             
-            document.getElementById("charityNameInput").value = localStorage.charityName || 'Walder Education';
-            document.getElementById("charityEmailInput").value = localStorage.charityEmail || 'teacherscenter@waldereducation.org';
+            document.getElementById("charityNameInput").value = user.get("charityName") || 'Walder Education';
+            document.getElementById("charityEmailInput").value = user.get("charityEmail") || 'teacherscenter@waldereducation.org';
             document.getElementById("fullAmountInput").value = fullAmount.toFixed(2);
 
             showSnackBar("Updated Settings");
@@ -327,7 +339,7 @@ async function signUp(myUsername, myPassword, myEmail) {
     user.set("total", 0);
     user.set("charityName", "Walder Education");
     user.set("charityEmail", "teacherscenter@waldereducation.org");
-    user.set("fullAmount", "1800");
+    user.set("fullAmount", 18.00);
 
     try {
         await user.signUp();
