@@ -31,6 +31,23 @@ button:hover {
     color: black;
 }
 
+#userButton {
+    font-weight: normal; 
+    font-size: 4.25vh;
+    color: rgb(218, 218, 218);
+    position: relative;
+    float:right;
+    background: none;
+    border-style: none;
+    padding: 1vh;
+    text-decoration: none;
+}
+
+#userButton:hover {
+    background: #ddd;
+    color: black;
+}
+
 .title {
     text-align: center;
     font-size: 4vh;
@@ -38,6 +55,7 @@ button:hover {
     margin-top: 1vh;
     margin-bottom: 1vh;
     margin-left: 2rem; /* To ofset the settingsButton, keeping title centered */
+    margin-right: 2rem;
 }
 
 #charityBoxPage {

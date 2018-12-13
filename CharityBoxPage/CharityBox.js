@@ -16,60 +16,32 @@ var login = true;
 Parse.initialize("0edbc24c4194a2bf17fb28b4b17a84befdf22537");
 Parse.serverURL = "http://3.16.162.6:80/parse/";
 
-// const SavedBoxTotal = Parse.Object.extend("SavedBoxTotal");
-// const query = new Parse.Query(SavedBoxTotal);
-// const savedBoxTotal = new SavedBoxTotal();
+var user = Parse.User.current();
+var username = "";
+var userTotal = 0;
+var userCharityName = "Walder Education";
+var userCharityEmail = "teacherscenter@waldereducation.org"
+var userFullAmount = 18.00;
 
-//clearObjects();
-
-// async function clearObjects() {
-//     query.greaterThanOrEqualTo("total", 0);
-//     const results = await query.find();
-//     for (let i = 0; i < results.length; i++) {
-//         console.log("Successfully retrieved " + results.length + " totals.");    
-//         var object = results[i];
-//         object.destroy().then((object) => {
-//             // The object was deleted from the Parse Cloud.
-//             console.log("Removed object " + object.id);
-//           }, (error) => {
-//             // The delete failed.
-//             // error is a Parse.Error with an error code and message.
-//             alert(error.message);
-//           });
-    
-    
-//     }
-// }
 
 function saveToParse() {
 
-    savedBoxTotal.set("total", boxTotal);
-
-    savedBoxTotal.save()
-      .then((savedBoxTotal) => {
-        // The object was saved successfully.
-        console.log("Total saved as: " + savedBoxTotal.get("total"));
-      }, (error) => {
-        // The save failed.
-        // error is a Parse.Error with an error code and message.
-        alert('Failed to create new object, with error code: ' + error.message);
-      });
+  user.save
 
 }
 
 function loadSaved() {
 
-    boxTotal = parseInt(localStorage.boxTotal) || 0;
+    boxTotal = userTotal || 0;
     document.getElementById("boxValue").innerHTML = "$" + (boxTotal/100).toFixed(2);
 
-    savedCharityName = localStorage.charityName || 'Walder Education';
+    savedCharityName = userCharityName || 'Walder Education';
     document.getElementById("charityNameInput").value = savedCharityName;
-    savedCharityEmail = localStorage.charityEmail || 'teacherscenter@waldereducation.org';
+    savedCharityEmail = userCharityEmail || 'teacherscenter@waldereducation.org';
     document.getElementById("charityEmailInput").value = savedCharityEmail;
 
-    fullAmount = parseInt(localStorage.fullAmount) || 18.00;
+    fullAmount = userFullAmount || 18.00;
     document.getElementById("fullAmountInput").value = fullAmount.toFixed(2);
-    //document.getElementById("fullAmount").innerHTML = '$' + fullAmount.toFixed(2);
 
 }
 
@@ -118,11 +90,8 @@ function giveToBox() {
     
     boxTotal = boxTotal + giveAmount;
     document.getElementById("boxValue").innerHTML = "$" + (boxTotal/100).toFixed(2); // Uses toFixed() to trim extra float zeros to display as a two decimal place for currency.
-    
-    // Save total to localStorage
-    localStorage.boxTotal = boxTotal;
 
-    saveToParse();
+    saveToParse(); // Saves total to Parse server
     
     // Resets giveAmount
     giveAmount = 0.00;
@@ -190,8 +159,22 @@ function showSnackBar(message) {
 }
 
 window.onload = function() {
-    // Show login modal
-    loginModal.style.display = "block";
+
+var currentUser = Parse.User.current();
+    if (currentUser) {
+        user.fetch().then(function(fetchedUser){
+            username = fetchedUser.getUsername();
+            userTotal = fetchedUser.get("total");
+            userCharityName = fetchedUser.get("CharityName");
+            userCharityEmail = fetchedUser.get("CharityEmail");
+            userFullAmount = fetchedUser.get("FullAmoung");
+            alert("Welcome " + username);
+        }, function(error){
+            console.log(error.message);
+        });
+    } else {
+        loginModal.style.display = "block";
+    }
 
     // Get the settings modal and its elements
     var modal = document.getElementById("settingsModal");
@@ -337,6 +320,15 @@ async function signUp(myUsername, myPassword, myEmail) {
         // Show the error message somewhere and let the user try again.
         alert("Error: " + error.code + " " + error.message);
     }
+
+}
+
+function logout() {
+    Parse.User.logOut().then(() => {
+        currentUser = Parse.User.current();  // this will now be null
+      });
+    alert("You have successfully logged out.");
+    loginModal.style.display = "block";
 
 }
 
